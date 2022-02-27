@@ -1,7 +1,16 @@
+import { Fragment } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 import './App.css';
 
 const App = () => {
-	return <h1>Hello World</h1>;
+	return (
+		<Fragment>
+			<Routes>
+				<Route element={<Layout />}></Route>
+			</Routes>
+		</Fragment>
+	);
 };
 
 export default App;
