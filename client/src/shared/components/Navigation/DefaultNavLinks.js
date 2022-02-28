@@ -7,7 +7,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 const DefaultNavLinks = () => {
-	const auth = useContext(AuthContext);
+	// const auth = useContext(AuthContext);
 
 	return (
 		<Fragment>
