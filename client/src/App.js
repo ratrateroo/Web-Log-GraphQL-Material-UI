@@ -2,14 +2,16 @@ import { Fragment } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './shared/components/Layout/Layout';
-import SignUp from './user/pages/SignUp';
+import MainNavigation from './shared/components/Navigation/MainNavigation';
+import TestPage from './user/pages/TestPage';
 
 const App = () => {
 	return (
 		<Fragment>
+			<MainNavigation />
 			<Routes>
-				<Route element={<Layout />}>
-					<Route path="/signup" element={<SignUp />} />
+				<Route path="/" element={<Layout />}>
+					<Route path="/signup" element={<TestPage />} />
 				</Route>
 			</Routes>
 		</Fragment>
