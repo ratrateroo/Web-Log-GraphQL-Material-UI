@@ -6,8 +6,11 @@ import SignUp from './user/pages/SignUp';
 
 import { ColorModeContext } from './context/ColorModeContext';
 
+import { useTheme } from '@mui/material/styles';
+
 const App = () => {
 	const colorMode = useContext(ColorModeContext);
+	const theme = useTheme();
 	return (
 		<Fragment>
 			<Routes>

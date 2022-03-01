@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { ColorModeContext } from './ColorModeContext';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import theme from '../theme/theme';
+//import theme from '../theme/theme';
 import lighttheme from '../theme/lighttheme';
 import darktheme from '../theme/darktheme';
 
