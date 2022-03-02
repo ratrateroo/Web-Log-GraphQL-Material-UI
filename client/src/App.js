@@ -14,7 +14,7 @@ const App = () => {
 	return (
 		<Fragment>
 			<Routes>
-				<Route path="/" element={<Layout />}>
+				<Route path="/" element={<Layout colorMode={colorMode} />}>
 					<Route path="/signup" element={<SignUp />} />
 				</Route>
 			</Routes>

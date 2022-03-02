@@ -3,11 +3,11 @@ import MainNavigation from '../Navigation/MainNavigation';
 // import AuthProvider from '../../auth/AuthProvider';
 import { Outlet } from 'react-router-dom';
 
-const Layout = (props) => {
+const Layout = ({ colorMode }) => {
 	return (
 		// <AuthProvider>
 		<Fragment>
-			<MainNavigation />
+			<MainNavigation colorMode={colorMode} />
 			<Outlet />
 		</Fragment>
 		// </AuthProvider>

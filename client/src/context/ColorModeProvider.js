@@ -32,7 +32,6 @@ const ColorModeProvider = ({ children }) => {
 		return mode === 'light' ? lighttheme : darktheme;
 	}, [mode]);
 
-	let value;
 	return (
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>{children}</ThemeProvider>
