@@ -2,19 +2,12 @@ import React, { Fragment, useContext } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
-
 // import { AuthContext } from '../../context/auth-context';
 
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-
-const DefaultNavLinks = ({ colorMode }) => {
+const DefaultNavLinks = () => {
 	// const auth = useContext(AuthContext);
-	const theme = useTheme();
 
 	return (
 		<Fragment>
@@ -29,14 +22,6 @@ const DefaultNavLinks = ({ colorMode }) => {
 					Friends
 				</Button>
 			)} */}
-
-			<IconButton color="inherit" onClick={colorMode.toggleColorMode}>
-				{theme.palette.mode === 'light' ? (
-					<Brightness7Icon />
-				) : (
-					<Brightness4Icon />
-				)}
-			</IconButton>
 		</Fragment>
 	);
 };

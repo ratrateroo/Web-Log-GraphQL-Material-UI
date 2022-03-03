@@ -11,7 +11,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+
+import { useTheme } from '@mui/material/styles';
+
 const MainNavigation = ({ colorMode }) => {
+	const theme = useTheme();
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -28,8 +34,15 @@ const MainNavigation = ({ colorMode }) => {
 						variant="h6"
 						component="div"
 						sx={{ flexGrow: 1 }}></Typography>
-					<DefaultNavigation colorMode={colorMode} />
-					{/* <UserNavigation /> */}
+					<DefaultNavigation />
+					<UserNavigation />
+					<IconButton color="inherit" onClick={colorMode.toggleColorMode}>
+						{theme.palette.mode === 'light' ? (
+							<Brightness7Icon />
+						) : (
+							<Brightness4Icon />
+						)}
+					</IconButton>
 				</Toolbar>
 			</AppBar>
 		</Box>
