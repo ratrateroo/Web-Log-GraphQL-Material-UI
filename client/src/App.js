@@ -2,7 +2,7 @@ import { Fragment, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './shared/components/Layout/Layout';
-import SignUp from './user/pages/SignUp';
+import UserSignUp from './user/pages/UserSignUp';
 
 import { ColorModeContext } from './context/ColorModeContext';
 
@@ -15,7 +15,7 @@ const App = () => {
 		<Fragment>
 			<Routes>
 				<Route path="/" element={<Layout colorMode={colorMode} />}>
-					<Route path="/signup" element={<SignUp />} />
+					<Route path="/signup" element={<UserSignUp />} />
 				</Route>
 			</Routes>
 		</Fragment>

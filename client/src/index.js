@@ -4,15 +4,21 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { ApolloProvider } from '@apollo/client';
 import ColorModeProvider from './context/ColorModeProvider';
+
+import { client } from './apollo/ApolloClient';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ColorModeProvider>
-			<Router>
-				<App />
-			</Router>
-		</ColorModeProvider>
+		<ApolloProvider client={client}>
+			<ColorModeProvider>
+				<Router>
+					<App />
+				</Router>
+			</ColorModeProvider>
+		</ApolloProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
