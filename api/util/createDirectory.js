@@ -2,12 +2,12 @@ const path = require('path');
 const { mkdirSync, existsSync, stat } = require('fs');
 
 const createDirectory = (foldername) => {
-	existsSync(path.join(__dirname, `./public/${foldername}`)) ||
-		mkdirSync(path.join(__dirname, `./public/${foldername}`));
+	existsSync(path.join(__dirname, `../public/${foldername}`)) ||
+		mkdirSync(path.join(__dirname, `../public/${foldername}`));
 
 	// Getting information for a directory
 
-	stat(path.join(__dirname, `./public/${foldername}`), (error, stats) => {
+	stat(path.join(__dirname, `../public/${foldername}`), (error, stats) => {
 		if (error) {
 			console.log(error);
 		} else {

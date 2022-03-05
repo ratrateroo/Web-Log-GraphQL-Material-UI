@@ -2,7 +2,7 @@ const shortId = require('shortid');
 const path = require('path');
 const { createWriteStream, unlink } = require('fs');
 
-const generateRandomString = require('./gernerateRamdomString');
+const generateRandomString = require('./generateRandomString');
 
 //const files = require('./files');
 //root directory __dirname
