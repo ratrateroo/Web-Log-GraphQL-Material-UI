@@ -27,13 +27,19 @@ const MainNavigation = ({ colorMode }) => {
 						edge="start"
 						color="inherit"
 						aria-label="menu"
-						sx={{ mr: 2 }}>
+						sx={{ mr: 2, display: { xs: 'flex', md: 'none' } }}>
 						<MenuIcon />
 					</IconButton>
 					<Typography
 						variant="h6"
 						component="div"
-						sx={{ flexGrow: 1 }}></Typography>
+						sx={{
+							flexGrow: 1,
+							mr: 2,
+							display: { xs: 'none', md: 'flex' },
+						}}>
+						LOGO
+					</Typography>
 					<DefaultNavigation />
 					<UserNavigation />
 					<IconButton color="inherit" onClick={colorMode.toggleColorMode}>
