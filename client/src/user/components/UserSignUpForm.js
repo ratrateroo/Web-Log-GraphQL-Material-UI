@@ -30,6 +30,7 @@ const SignUpUser = () => {
 	const [signUpUser, { error }] = useMutation(SIGNUP_MUTATION);
 	const [user, setUser] = useState({
 		username: '',
+		password: '',
 	});
 
 	// function usernameChangeHandler(e) {
@@ -87,47 +88,34 @@ const SignUpUser = () => {
 						// onSubmit={signUpUserHandler}
 						sx={{ mt: 1 }}>
 						<TextField
+							autoComplete="false"
 							name="username"
 							margin="normal"
-							required
 							fullWidth
 							id="username"
 							label="Username"
-							autoFocus
 							// onChange={usernameChangeHandler}
 							value={user.username}
 							type="text"
+						/>
+						<TextField
+							autoComplete="false"
+							name="password"
+							margin="normal"
+							fullWidth
+							id="password"
+							label="Password"
+							// onChange={usernameChangeHandler}
+							value={user.password}
+							type="password"
 						/>
 
 						<Button
 							type="submit"
 							fullWidth
 							variant="contained"
-							sx={{ mt: 3, mb: 2 }}>
-							Sign Up
-						</Button>
-
-						<Button
-							type="submit"
-							fullWidth
-							variant="outlined"
-							sx={{ mt: 3, mb: 2 }}>
-							Sign Up
-						</Button>
-
-						<Button
-							type="submit"
-							fullWidth
-							variant="text"
-							sx={{ mt: 3, mb: 2 }}>
-							Sign Up
-						</Button>
-
-						<Button
-							type="submit"
-							fullWidth
-							variant="string"
-							sx={{ mt: 3, mb: 2 }}>
+							sx={{ mt: 3, mb: 2 }}
+							size="large">
 							Sign Up
 						</Button>
 					</Box>

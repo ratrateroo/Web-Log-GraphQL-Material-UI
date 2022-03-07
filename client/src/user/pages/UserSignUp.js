@@ -2,7 +2,7 @@ import React from 'react';
 
 import UserSignUpForm from '../components/UserSignUpForm';
 
-const UserSignup = (props) => {
+const UserSignup = () => {
 	return <UserSignUpForm />;
 };
 
