@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 import { useForm } from '../../hooks/useForm/index';
 
@@ -23,12 +24,43 @@ export const SIGNUP_MUTATION = gql`
 	}
 `;
 
-const SignUpUser = () => {
+const UserSignUpForm = () => {
 	const [signUpUser, { error }] = useMutation(SIGNUP_MUTATION);
 	const [user, setUser] = useState({
 		username: '',
 		password: '',
 	});
+
+	//useForm Hook
+	const [formState, inputHandler] = useForm(
+		{
+			username: {
+				value: '',
+				isValid: true,
+			},
+			email: {
+				value: '',
+				isValid: true,
+			},
+			password: {
+				value: '',
+				isValid: true,
+			},
+			firstname: {
+				value: '',
+				isValid: true,
+			},
+			middlename: {
+				value: '',
+				isValid: true,
+			},
+			lastname: {
+				value: '',
+				isValid: true,
+			},
+		},
+		false
+	);
 
 	// function usernameChangeHandler(e) {
 	// 	setUser({
@@ -64,11 +96,11 @@ const SignUpUser = () => {
 
 	return (
 		<Fragment>
-			<Container component="main" maxWidth="xs">
+			<Container component="main" maxWidth="md">
 				<CssBaseline />
 				<Box
 					sx={{
-						marginTop: 8,
+						marginTop: 5,
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
@@ -76,45 +108,95 @@ const SignUpUser = () => {
 					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
 						<LockOutlinedIcon />
 					</Avatar>
-					<Typography component="h1" variant="h5">
+					<Typography component="h4" variant="h4">
 						Sign Up
 					</Typography>
 					<Box
 						component="form"
 						noValidate
 						// onSubmit={signUpUserHandler}
-						sx={{ mt: 1 }}>
-						<TextField
-							autoComplete="false"
-							name="username"
-							margin="normal"
-							fullWidth
-							id="username"
-							label="Username"
-							// onChange={usernameChangeHandler}
-							value={user.username}
-							type="text"
-						/>
-						<TextField
-							autoComplete="false"
-							name="password"
-							margin="normal"
-							fullWidth
-							id="password"
-							label="Password"
-							// onChange={usernameChangeHandler}
-							value={user.password}
-							type="password"
-						/>
-
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							sx={{ mt: 3, mb: 2 }}
-							size="large">
-							Sign Up
-						</Button>
+						sx={{ mt: 5 }}>
+						<Box sx={{ flexGrow: 1 }}>
+							<Grid container spacing={5}>
+								<Grid item xs={6}>
+									<Typography component="h6" variant="h6">
+										Account Information
+									</Typography>
+									<TextField
+										margin="normal"
+										id="username"
+										label="Username"
+										type="text"
+										size="small"
+										fullWidth
+									/>
+									<TextField
+										margin="normal"
+										id="password"
+										label="Password"
+										type="password"
+										size="small"
+										fullWidth
+									/>
+									<TextField
+										margin="normal"
+										id="email"
+										label="Email"
+										type="email"
+										size="small"
+										fullWidth
+									/>
+								</Grid>
+								<Grid item xs={6}>
+									<Typography component="h6" variant="h6">
+										Personal Details
+									</Typography>
+									<TextField
+										margin="normal"
+										id="firstname"
+										label="First Name"
+										type="text"
+										size="small"
+										fullWidth
+									/>
+									<TextField
+										margin="normal"
+										id="middlename"
+										label="Middle Name"
+										type="text"
+										size="small"
+										fullWidth
+									/>
+									<TextField
+										margin="normal"
+										id="lastname"
+										label="Last Name"
+										type="text"
+										size="small"
+										fullWidth
+									/>
+								</Grid>
+							</Grid>
+							<Grid
+								container
+								spacing={0}
+								direction="column"
+								alignItems="center"
+								justifyContent="center"
+								sx={{
+									marginTop: '2rem',
+								}}>
+								<Grid item xs={3}>
+									<Button
+										type="submit"
+										variant="contained"
+										sx={{}}
+										size="large">
+										Sign Up
+									</Button>
+								</Grid>
+							</Grid>
+						</Box>
 					</Box>
 				</Box>
 			</Container>
@@ -122,4 +204,4 @@ const SignUpUser = () => {
 	);
 };
 
-export default SignUpUser;
+export default UserSignUpForm;
