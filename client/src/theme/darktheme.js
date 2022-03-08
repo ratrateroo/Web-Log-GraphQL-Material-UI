@@ -10,9 +10,12 @@ const darktheme = createTheme({
 			contrastText: '#ffffff',
 		},
 		secondary: {
-			main: '#DDB573',
-			light: '#EFDEBF',
-			dark: '#CB904D',
+			//main: '#DDB573',
+			main: '#c98403',
+			//light: '#EFDEBF',
+			light: '#d0983b',
+			//dark: '#CB904D',
+			dark: '#ba5900',
 			contrastText: '#ffffff',
 		},
 		error: {

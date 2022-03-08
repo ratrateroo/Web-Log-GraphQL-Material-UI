@@ -11,7 +11,7 @@ const DefaultNavLinks = () => {
 
 	return (
 		<Fragment>
-			<Button color="inherit" to="/blogs" component={RouterLink}>
+			<Button color="inherit" to="/" component={RouterLink}>
 				Home
 			</Button>
 			<Button color="inherit" to="/users" component={RouterLink}>
