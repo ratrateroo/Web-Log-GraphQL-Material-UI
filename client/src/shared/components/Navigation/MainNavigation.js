@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
+import Tooltip from '@mui/material/Tooltip';
+
 import { useTheme } from '@mui/material/styles';
 
 const MainNavigation = ({ colorMode }) => {
@@ -42,13 +44,20 @@ const MainNavigation = ({ colorMode }) => {
 					</Typography>
 					<DefaultNavigation />
 					<UserNavigation />
-					<IconButton color="inherit" onClick={colorMode.toggleColorMode}>
-						{theme.palette.mode === 'light' ? (
-							<Brightness7Icon />
-						) : (
-							<Brightness4Icon />
-						)}
-					</IconButton>
+					<Tooltip
+						title={
+							theme.palette.mode === 'light' ? 'Light Mode' : 'Dark Mode'
+						}>
+						<IconButton
+							color="inherit"
+							onClick={colorMode.toggleColorMode}>
+							{theme.palette.mode === 'light' ? (
+								<Brightness7Icon />
+							) : (
+								<Brightness4Icon />
+							)}
+						</IconButton>
+					</Tooltip>
 				</Toolbar>
 			</AppBar>
 		</Box>
