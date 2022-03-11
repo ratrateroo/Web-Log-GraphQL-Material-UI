@@ -130,7 +130,9 @@ const UserSignUpForm = () => {
 										type="text"
 										size="small"
 										fullWidth
+										required={true}
 									/>
+
 									<TextField
 										margin="normal"
 										id="password"
@@ -138,6 +140,7 @@ const UserSignUpForm = () => {
 										type="password"
 										size="small"
 										fullWidth
+										required={true}
 									/>
 									<TextField
 										margin="normal"
@@ -146,6 +149,7 @@ const UserSignUpForm = () => {
 										type="email"
 										size="small"
 										fullWidth
+										required={true}
 									/>
 								</Grid>
 								<Grid item xs={6}>
@@ -159,6 +163,7 @@ const UserSignUpForm = () => {
 										type="text"
 										size="small"
 										fullWidth
+										required={true}
 									/>
 									<TextField
 										margin="normal"
@@ -167,6 +172,7 @@ const UserSignUpForm = () => {
 										type="text"
 										size="small"
 										fullWidth
+										required={true}
 									/>
 									<TextField
 										margin="normal"
@@ -175,6 +181,7 @@ const UserSignUpForm = () => {
 										type="text"
 										size="small"
 										fullWidth
+										required={true}
 									/>
 								</Grid>
 							</Grid>
