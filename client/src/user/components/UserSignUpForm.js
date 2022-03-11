@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 import { useForm } from '../../hooks/useForm/index';
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
 
 //import { setUserData } from '../util/userData';
 
