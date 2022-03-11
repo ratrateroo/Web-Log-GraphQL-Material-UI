@@ -1,10 +1,9 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 
+import Button from '@mui/material/Button';
 import { Link as RouterLink } from 'react-router-dom';
 
 // import { AuthContext } from '../../context/auth-context';
-
-import Button from '@mui/material/Button';
 
 const DefaultNavLinks = () => {
 	// const auth = useContext(AuthContext);

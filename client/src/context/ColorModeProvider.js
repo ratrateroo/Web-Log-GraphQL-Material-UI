@@ -1,10 +1,11 @@
 import { useState, useMemo } from 'react';
-import { ColorModeContext } from './ColorModeContext';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 //import theme from '../theme/theme';
-import lighttheme from '../theme/lighttheme';
+
 import darktheme from '../theme/darktheme';
+import lighttheme from '../theme/lighttheme';
+import { ColorModeContext } from './ColorModeContext';
 
 const ColorModeProvider = ({ children }) => {
 	const [mode, setMode] = useState('light');

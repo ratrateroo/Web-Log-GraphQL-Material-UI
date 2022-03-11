@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
+
+import { Outlet } from 'react-router-dom';
+
 import MainNavigation from '../Navigation/MainNavigation';
 // import AuthProvider from '../../auth/AuthProvider';
-import { Outlet } from 'react-router-dom';
 
 const Layout = ({ colorMode }) => {
 	return (

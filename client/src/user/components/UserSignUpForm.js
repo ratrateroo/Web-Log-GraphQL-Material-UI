@@ -1,14 +1,15 @@
 import React, { Fragment, useState } from 'react';
+
 import { gql, useMutation } from '@apollo/client';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 import { useForm } from '../../hooks/useForm/index';
 
@@ -187,11 +188,7 @@ const UserSignUpForm = () => {
 									marginTop: '2rem',
 								}}>
 								<Grid item xs={3}>
-									<Button
-										type="submit"
-										variant="contained"
-										sx={{}}
-										size="large">
+									<Button type="submit" variant="contained" sx={{}} size="large">
 										Sign Up
 									</Button>
 								</Grid>

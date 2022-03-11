@@ -1,14 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 import { ApolloProvider } from '@apollo/client';
-import ColorModeProvider from './context/ColorModeProvider';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
+import './index.css';
 import { client } from './apollo/ApolloClient';
+import App from './App';
+import ColorModeProvider from './context/ColorModeProvider';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 	<React.StrictMode>

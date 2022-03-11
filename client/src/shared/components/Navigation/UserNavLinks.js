@@ -1,18 +1,12 @@
-import React, { Fragment, useContext } from 'react';
-
-import {
-	Link as RouterLink,
-	useMatch,
-	useResolvedPath,
-	useLocation,
-} from 'react-router-dom';
-
-//import { AuthContext } from '../../auth/AuthContext';
+import React, { Fragment } from 'react';
 
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
+import { Link as RouterLink, useMatch, useResolvedPath } from 'react-router-dom';
 
-function CustomLink({ children, to, ...props }) {
+//import { AuthContext } from '../../auth/AuthContext';
+
+const CustomLink = ({ children, to, ...props }) => {
 	let resolved = useResolvedPath(to);
 	console.log(resolved);
 	let match = useMatch({ path: resolved.pathname, end: true });
@@ -32,12 +26,10 @@ function CustomLink({ children, to, ...props }) {
 			</Button>
 		</div>
 	);
-}
+};
 
-const UserNavLinks = (props) => {
+const UserNavLinks = () => {
 	//const { isLoggedIn, logout } = useContext(AuthContext);
-
-	const theme = useTheme();
 
 	return (
 		<Fragment>
