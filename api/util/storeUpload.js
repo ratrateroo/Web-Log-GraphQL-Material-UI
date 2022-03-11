@@ -1,7 +1,6 @@
-const { UserInputError } = require('apollo-server-express');
-const User = require('./models/user');
+// const User = require('../models/user');
 const storeFileSystem = require('./storeFileSystem');
-const storeUpload = async (file, context) => {
+const storeUpload = async (file) => {
 	console.log('Context User ID');
 
 	const { createReadStream, filename, mimetype, encoding } = await file.file;
@@ -10,14 +9,8 @@ const storeUpload = async (file, context) => {
 	console.log(mimetype);
 	console.log(encoding);
 	//check for the correct mimetype
-	if (
-		mimetype !== 'image/jpeg' &&
-		mimetype !== 'image/png' &&
-		mimetype !== 'image/jpg'
-	) {
-		throw new Error(
-			`File type ${mimetype} is invalid. Try uploading .jpg, jpeg, or .png file.`
-		);
+	if (mimetype !== 'image/jpeg' && mimetype !== 'image/png' && mimetype !== 'image/jpg') {
+		throw new Error(`File type ${mimetype} is invalid. Try uploading .jpg, jpeg, or .png file.`);
 	}
 	const stream = createReadStream();
 	//console.log(stream);

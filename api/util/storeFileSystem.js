@@ -1,6 +1,7 @@
-const shortId = require('shortid');
-const path = require('path');
 const { createWriteStream, unlink } = require('fs');
+const path = require('path');
+
+const shortId = require('shortid');
 
 const generateRandomString = require('./generateRandomString');
 
@@ -19,15 +20,12 @@ const storeFileSystem = async ({ stream, filename, mimetype, encoding }) => {
 
 	//generate new storedFileName
 
-	const storedFileName = generateRandomString(12) + ext;
+	const storedFileName = name + shortId + generateRandomString(12) + ext;
 
-	const newurl = new URL(path.join(__dirname, './public/images'));
+	//const newurl = new URL(path.join(__dirname, './public/images'));
 
 	//storedFileUrl - file upload directory + filename
-	const storedFileUrl = path.join(
-		__dirname,
-		`./public/images/${storedFileName}`
-	);
+	const storedFileUrl = path.join(__dirname, `./public/images/${storedFileName}`);
 
 	//Store the file in the filesystem.
 	await new Promise((resolve, reject) => {
@@ -50,7 +48,7 @@ const storeFileSystem = async ({ stream, filename, mimetype, encoding }) => {
 		stream.pipe(writeStream);
 	});
 
-	files.push(storedFileName);
+	//files.push(storedFileName);
 
 	return { filename: storedFileName, mimetype: mimetype, encoding: encoding };
 };

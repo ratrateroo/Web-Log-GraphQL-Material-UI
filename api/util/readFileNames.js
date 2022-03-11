@@ -1,5 +1,5 @@
-const fs = require('fs');
 const EventEmitter = require('events').EventEmitter;
+const fs = require('fs');
 const filesEE = new EventEmitter();
 const myfiles = [];
 const folderName = './public/images';

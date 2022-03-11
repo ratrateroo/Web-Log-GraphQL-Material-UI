@@ -1,30 +1,22 @@
-const User = require('../../models/user');
 const Blog = require('../../models/blog');
+const User = require('../../models/user');
 
 const blogs = async (blogIds) => {
-	try {
-		const blogs = await Blog.find({ _id: { $in: blogIds } });
-		return blogs.map((blog) => {
-			return transformBlog(blog);
-		});
-	} catch (err) {
-		throw err;
-	}
+	const blogs = await Blog.find({ _id: { $in: blogIds } });
+	return blogs.map((blog) => {
+		return transformBlog(blog);
+	});
 };
 
 const user = async (userId) => {
-	try {
-		const user = await User.findById(userId);
-		//const blogCount = blogs.bind(this, user._doc.createdBlogs);
-		// return {
-		// 	...user._doc,
-		// 	_id: user.id,
-		// 	createdBlogs: blogCount.length,
-		// };
-		return transformUser(user);
-	} catch (err) {
-		throw err;
-	}
+	const user = await User.findById(userId);
+	//const blogCount = blogs.bind(this, user._doc.createdBlogs);
+	// return {
+	// 	...user._doc,
+	// 	_id: user.id,
+	// 	createdBlogs: blogCount.length,
+	// };
+	return transformUser(user);
 };
 
 const transformBlog = (blog) => {

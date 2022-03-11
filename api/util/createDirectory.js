@@ -1,5 +1,5 @@
-const path = require('path');
 const { mkdirSync, existsSync, stat } = require('fs');
+const path = require('path');
 
 const createDirectory = (foldername) => {
 	existsSync(path.join(__dirname, `../public/${foldername}`)) ||
@@ -11,12 +11,7 @@ const createDirectory = (foldername) => {
 		if (error) {
 			console.log(error);
 		} else {
-			console.log(
-				`Stats object for: ${path.join(
-					__dirname,
-					`./public/${foldername}`
-				)}`
-			);
+			console.log(`Stats object for: ${path.join(__dirname, `./public/${foldername}`)}`);
 			//console.log(stats);
 			// Using methods of the Stats object
 			console.log('Path is file:', stats.isFile());

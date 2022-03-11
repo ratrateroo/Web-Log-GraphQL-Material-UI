@@ -1,7 +1,7 @@
 require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const { graphqlUploadExpress } = require('graphql-upload');
-const cors = require('cors');
 const mongoose = require('mongoose');
 
 const apolloserver = require('./apollo/apolloserver');
