@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 
 import { gql, useMutation } from '@apollo/client';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 
 import Input from '../../components/FormElements/Input/index';
 import { useForm } from '../../hooks/useForm/index';
+import { setUserData } from '../../services/UserData/index';
 import {
 	VALIDATOR_REQUIRE,
 	VALIDATOR_MINLENGTH,
@@ -22,8 +23,24 @@ import {
 //import { setUserData } from '../util/userData';
 
 export const SIGNUP_MUTATION = gql`
-	mutation SignUpMutation($username: String!) {
-		signUpUser(userInput: { username: $username }) {
+	mutation SignUpMutation(
+		$username: String!
+		$email: String!
+		$password: String
+		$firstname: String!
+		$middlename: String!
+		$lastname: String!
+	) {
+		signUpUser(
+			userInput: {
+				username: $username
+				email: $email
+				password: $password
+				firstname: $firstname
+				middlename: $middlename
+				lastname: $lastname
+			}
+		) {
 			userId
 			token
 			tokenExpiration
@@ -32,14 +49,19 @@ export const SIGNUP_MUTATION = gql`
 `;
 
 const UserSignUpForm = () => {
-	const [signUpUser, { error }] = useMutation(SIGNUP_MUTATION);
-	const [user, setUser] = useState({
-		username: '',
-		password: '',
+	const [signUpUser, { error, data }] = useMutation(SIGNUP_MUTATION, {
+		onCompleted: (data) => {
+			setUserData({
+				token: data.token,
+				userId: data.userId,
+				tokenExpiration: data.tokenExpiration,
+			});
+			clearFormHandler();
+		},
 	});
 
 	//useForm Hook
-	const [formState, inputHandler] = useForm(
+	const [formState, inputHandler, setFormData] = useForm(
 		{
 			username: {
 				value: '',
@@ -68,6 +90,59 @@ const UserSignUpForm = () => {
 		},
 		false
 	);
+
+	const clearFormHandler = () => {
+		setFormData(
+			{
+				username: {
+					value: '',
+					isValid: true,
+				},
+				email: {
+					value: '',
+					isValid: true,
+				},
+				password: {
+					value: '',
+					isValid: true,
+				},
+				firstname: {
+					value: '',
+					isValid: true,
+				},
+				middlename: {
+					value: '',
+					isValid: true,
+				},
+				lastname: {
+					value: '',
+					isValid: true,
+				},
+			},
+			false
+		);
+	};
+
+	const signUpUserHandler = (e) => {
+		e.preventDefault();
+
+		try {
+			signUpUser({
+				variables: {
+					username: formState.inputs.username.value,
+					email: formState.inputs.email.value,
+					password: formState.inputs.password.value,
+					firstname: formState.inputs.firstname.value,
+					middlename: formState.inputs.middlename.value,
+					lastname: formState.inputs.lastname.value,
+				},
+			}).catch((err) => {
+				console.log(err);
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	// function usernameChangeHandler(e) {
 	// 	setUser({
@@ -118,6 +193,16 @@ const UserSignUpForm = () => {
 					<Typography component="h4" variant="h4">
 						Sign Up
 					</Typography>
+					{data ? (
+						<Typography component="h6" variant="h6" color="secondary">
+							{data ? 'Sign up successful!' : '\u00A0'}
+						</Typography>
+					) : (
+						<Typography component="h6" variant="h6" color="secondary">
+							{error ? error.message : '\u00A0'}
+						</Typography>
+					)}
+
 					<Box
 						component="form"
 						noValidate
@@ -232,7 +317,8 @@ const UserSignUpForm = () => {
 												variant="contained"
 												sx={{}}
 												size="large"
-												disabled={!formState.isValid}>
+												disabled={!formState.isValid}
+												onClick={signUpUserHandler}>
 												Sign Up
 											</Button>
 										</span>

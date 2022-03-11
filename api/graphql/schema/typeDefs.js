@@ -77,6 +77,7 @@ const typeDefs = gql`
 
 	type Mutation {
 		createUser(userInput: UserInput): AuthData!
+		signUpUser(userInput: UserInput): AuthData!
 		createBlog(blogInput: BlogInput): Blog
 		addFriend(friendId: ID!): Friend!
 		removeFriend(friendId: ID!): Friend!

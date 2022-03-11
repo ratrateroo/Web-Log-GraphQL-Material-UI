@@ -24,40 +24,40 @@ const userResolvers = {
 		});
 	},
 
-	createUser: async (args) => {
-		console.log(args);
-		const existingUser = await User.findOne({
-			email: args.userInput.email,
-		});
-		if (existingUser) {
-			throw new Error('User exists already.');
-		}
+	// createUser: async (args) => {
+	// 	console.log(args);
+	// 	const existingUser = await User.findOne({
+	// 		email: args.userInput.email,
+	// 	});
+	// 	if (existingUser) {
+	// 		throw new Error('User exists already.');
+	// 	}
 
-		const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
+	// 	const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
 
-		const user = new User({
-			username: args.userInput.username,
-			email: args.userInput.email,
-			password: hashedPassword,
-			firstname: args.userInput.firstname,
-			middlename: args.userInput.middlename,
-			lastname: args.userInput.lastname,
-			profileimage: 'defaultimage',
-		});
-		const result = await user.save();
+	// 	const user = new User({
+	// 		username: args.userInput.username,
+	// 		email: args.userInput.email,
+	// 		password: hashedPassword,
+	// 		firstname: args.userInput.firstname,
+	// 		middlename: args.userInput.middlename,
+	// 		lastname: args.userInput.lastname,
+	// 		profileimage: 'defaultimage',
+	// 	});
+	// 	const result = await user.save();
 
-		//return { ...result._doc, password: null, _id: result.id };
+	// 	//return { ...result._doc, password: null, _id: result.id };
 
-		const token = jwt.sign({ userId: result.id, email: user.email }, 'secretkeyforhashing', {
-			expiresIn: '1h',
-		});
+	// 	const token = jwt.sign({ userId: result.id, email: user.email }, 'secretkeyforhashing', {
+	// 		expiresIn: '1h',
+	// 	});
 
-		return {
-			userId: result._id,
-			token: token,
-			tokenExpiration: 1,
-		};
-	},
+	// 	return {
+	// 		userId: result._id,
+	// 		token: token,
+	// 		tokenExpiration: 1,
+	// 	};
+	// },
 
 	updateImage: async ({ id, profileimage }) => {
 		const existingUser = await User.findOne({
@@ -122,6 +122,60 @@ const userResolvers = {
 		console.log(user);
 
 		return transformUser(user);
+	},
+
+	signUpUser: async (args) => {
+		console.log(args);
+		let status;
+		await User.findOne()
+			.or([{ username: args.userInput.username }, { email: args.userInput.email }])
+			.then((result) => {
+				{
+					result.username === args.userInput.username
+						? (status = 'username')
+						: (status = 'email');
+				}
+			})
+			.catch((err) => console.log(err));
+
+		// const existingUser = await User.findOne({
+		// 	username: args.userInput.username,
+		// 	email: args.userInput.email,
+		// });
+		if (status === 'username') {
+			console.log('username');
+			throw new Error('Username exists already.');
+		}
+
+		if (status === 'email') {
+			console.log('email');
+			throw new Error('Email already taken.');
+		}
+
+		const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
+
+		const user = new User({
+			username: args.userInput.username,
+			email: args.userInput.email,
+			password: hashedPassword,
+			firstname: args.userInput.firstname,
+			middlename: args.userInput.middlename,
+			lastname: args.userInput.lastname,
+			profileimage: 'defaultimage',
+		});
+		const result = await user.save();
+
+		//return { ...result._doc, password: null, _id: result.id };
+
+		const token = jwt.sign({ userId: result.id, email: user.email }, 'secretkeyforhashing', {
+			expiresIn: '1h',
+		});
+
+		return {
+			userId: result._id,
+			token: token,
+			tokenExpiration: 1,
+		};
 	},
 };
 

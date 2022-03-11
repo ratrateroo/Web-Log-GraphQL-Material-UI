@@ -1,8 +1,8 @@
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 
-import { getUserData } from '../util/userData';
+import { getUserData } from '../services/UserData/index';
 
 const authLink = setContext((_, { headers }) => {
 	//const userData = localStorage.getItem(LOGGED_IN_USER);
@@ -38,7 +38,7 @@ const httpLink = new HttpLink({ uri: `http://localhost:8000/graphql` });
 // });
 
 export const client = new ApolloClient({
-	link: [authLink, uploadLink, httpLink],
+	link: ApolloLink.from([authLink, uploadLink, httpLink]),
 	cache: new InMemoryCache(),
 });
 

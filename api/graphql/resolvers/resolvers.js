@@ -15,9 +15,10 @@ const resolvers = {
 		},
 	},
 	Mutation: {
-		createUser: (_, data) => {
-			return userResolvers.createUser(data);
+		signUpUser: (_, data) => {
+			return userResolvers.signUpUser(data);
 		},
+
 		uploadProfileImage: (_, { file }) => userResolvers.storeUpload(file),
 	},
 };
