@@ -3,7 +3,6 @@ import React, { useReducer, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 
 import { validate } from '../../../services/validators/index';
-import './Input.css';
 
 const inputReducer = (state, action) => {
 	switch (action.type) {
@@ -51,26 +50,6 @@ const Input = (props) => {
 		});
 	};
 
-	const element =
-		props.element === 'input' ? (
-			<input
-				id={props.id}
-				type={props.type}
-				placeholder={props.placeholder}
-				onChange={changeHandler}
-				onBlur={touchHandler}
-				value={inputState.value}
-			/>
-		) : (
-			<textarea
-				id={props.id}
-				rows={props.rows || 14}
-				onChange={changeHandler}
-				onBlur={touchHandler}
-				value={inputState.value}
-			/>
-		);
-
 	const inputElement =
 		props.multiline === true ? (
 			<TextField
@@ -101,10 +80,11 @@ const Input = (props) => {
 				onChange={changeHandler}
 				onBlur={touchHandler}
 				value={inputState.value}
+				error={!inputState.isValid && inputState.isTouched}
 			/>
 		);
 
-	return { inputElement };
+	return inputElement;
 };
 
 export default Input;

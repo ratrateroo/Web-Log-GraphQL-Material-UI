@@ -8,11 +8,16 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
+import Input from '../../components/FormElements/Input/index';
 import { useForm } from '../../hooks/useForm/index';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
+import {
+	VALIDATOR_REQUIRE,
+	VALIDATOR_MINLENGTH,
+	VALIDATOR_EMAIL,
+} from '../../services/validators/index';
 
 //import { setUserData } from '../util/userData';
 
@@ -124,65 +129,83 @@ const UserSignUpForm = () => {
 									<Typography component="h6" variant="h6">
 										Account Information
 									</Typography>
-									<TextField
-										margin="normal"
+									<Input
+										type="text"
 										id="username"
 										label="Username"
-										type="text"
-										size="small"
+										placeholder="Enter your username here!"
 										fullWidth
 										required={true}
+										margin="normal"
+										size="small"
+										onInput={inputHandler}
+										validators={[VALIDATOR_REQUIRE()]}
 									/>
 
-									<TextField
-										margin="normal"
+									<Input
+										type="password"
 										id="password"
 										label="Password"
-										type="password"
-										size="small"
+										placeholder="Enter your password here!"
 										fullWidth
 										required={true}
-									/>
-									<TextField
 										margin="normal"
+										size="small"
+										onInput={inputHandler}
+										validators={[VALIDATOR_MINLENGTH(5)]}
+									/>
+									<Input
+										type="email"
 										id="email"
 										label="Email"
-										type="email"
-										size="small"
+										placeholder="Enter your email here!"
 										fullWidth
 										required={true}
+										margin="normal"
+										size="small"
+										onInput={inputHandler}
+										validators={[VALIDATOR_EMAIL()]}
 									/>
 								</Grid>
 								<Grid item xs={6}>
 									<Typography component="h6" variant="h6">
 										Personal Details
 									</Typography>
-									<TextField
-										margin="normal"
+									<Input
+										type="text"
 										id="firstname"
-										label="First Name"
-										type="text"
-										size="small"
+										label="Firstname"
+										placeholder="Enter your first name here!"
 										fullWidth
 										required={true}
-									/>
-									<TextField
 										margin="normal"
+										size="small"
+										onInput={inputHandler}
+										validators={[VALIDATOR_REQUIRE()]}
+									/>
+									<Input
+										type="text"
 										id="middlename"
-										label="Middle Name"
-										type="text"
-										size="small"
+										label="Middlename"
+										placeholder="Enter your middle name here!"
 										fullWidth
 										required={true}
-									/>
-									<TextField
 										margin="normal"
-										id="lastname"
-										label="Last Name"
-										type="text"
 										size="small"
+										onInput={inputHandler}
+										validators={[VALIDATOR_REQUIRE()]}
+									/>
+									<Input
+										type="text"
+										id="lastname"
+										label="Lastname"
+										placeholder="Enter your last name here!"
 										fullWidth
 										required={true}
+										margin="normal"
+										size="small"
+										onInput={inputHandler}
+										validators={[VALIDATOR_REQUIRE()]}
 									/>
 								</Grid>
 							</Grid>
@@ -196,9 +219,24 @@ const UserSignUpForm = () => {
 									marginTop: '2rem',
 								}}>
 								<Grid item xs={3}>
-									<Button type="submit" variant="contained" sx={{}} size="large">
-										Sign Up
-									</Button>
+									<Tooltip
+										title={
+											!formState.isValid
+												? 'Provide all details required!'
+												: 'Valid details are provided!'
+										}
+										placement="top">
+										<span>
+											<Button
+												type="submit"
+												variant="contained"
+												sx={{}}
+												size="large"
+												disabled={!formState.isValid}>
+												Sign Up
+											</Button>
+										</span>
+									</Tooltip>
 								</Grid>
 							</Grid>
 						</Box>
