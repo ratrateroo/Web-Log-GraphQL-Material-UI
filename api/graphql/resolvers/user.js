@@ -130,6 +130,7 @@ const userResolvers = {
 		await User.findOne()
 			.or([{ username: args.userInput.username }, { email: args.userInput.email }])
 			.then((result) => {
+				console.log(result);
 				{
 					result.username === args.userInput.username
 						? (status = 'username')
@@ -143,12 +144,10 @@ const userResolvers = {
 		// 	email: args.userInput.email,
 		// });
 		if (status === 'username') {
-			console.log('username');
 			throw new Error('Username exists already.');
 		}
 
 		if (status === 'email') {
-			console.log('email');
 			throw new Error('Email already taken.');
 		}
 
@@ -178,5 +177,4 @@ const userResolvers = {
 		};
 	},
 };
-
 module.exports = userResolvers;

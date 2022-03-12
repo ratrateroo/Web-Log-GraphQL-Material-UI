@@ -10,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Input from '../../components/FormElements/Input/index';
 import { useForm } from '../../hooks/useForm/index';
@@ -49,6 +50,10 @@ export const SIGNUP_MUTATION = gql`
 `;
 
 const UserSignUpForm = () => {
+	let navigate = useNavigate();
+	let location = useLocation();
+	let from = location.state?.from?.pathname || '/';
+
 	const [signUpUser, { error, data }] = useMutation(SIGNUP_MUTATION, {
 		onCompleted: (data) => {
 			setUserData({
@@ -56,7 +61,36 @@ const UserSignUpForm = () => {
 				userId: data.userId,
 				tokenExpiration: data.tokenExpiration,
 			});
-			clearFormHandler();
+			setFormData(
+				{
+					username: {
+						value: '',
+						isValid: true,
+					},
+					email: {
+						value: '',
+						isValid: true,
+					},
+					password: {
+						value: '',
+						isValid: true,
+					},
+					firstname: {
+						value: '',
+						isValid: true,
+					},
+					middlename: {
+						value: '',
+						isValid: true,
+					},
+					lastname: {
+						value: '',
+						isValid: true,
+					},
+				},
+				false
+			);
+			navigate(from, { replace: true });
 		},
 	});
 
@@ -90,38 +124,6 @@ const UserSignUpForm = () => {
 		},
 		false
 	);
-
-	const clearFormHandler = () => {
-		setFormData(
-			{
-				username: {
-					value: '',
-					isValid: true,
-				},
-				email: {
-					value: '',
-					isValid: true,
-				},
-				password: {
-					value: '',
-					isValid: true,
-				},
-				firstname: {
-					value: '',
-					isValid: true,
-				},
-				middlename: {
-					value: '',
-					isValid: true,
-				},
-				lastname: {
-					value: '',
-					isValid: true,
-				},
-			},
-			false
-		);
-	};
 
 	const signUpUserHandler = (e) => {
 		e.preventDefault();
@@ -199,15 +201,16 @@ const UserSignUpForm = () => {
 						</Typography>
 					) : (
 						<Typography component="h6" variant="h6" color="secondary">
-							{error ? error.message : '\u00A0'}
+							{error
+								? error.message === 'Username exists already.' ||
+								  error.message === 'Email already taken.'
+									? error.message + '!'
+									: 'Something went wrong, please try again.'
+								: '\u00A0'}
 						</Typography>
 					)}
 
-					<Box
-						component="form"
-						noValidate
-						// onSubmit={signUpUserHandler}
-						sx={{ mt: 5 }}>
+					<Box component="form" onSubmit={signUpUserHandler} sx={{ mt: 5 }}>
 						<Box sx={{ flexGrow: 1 }}>
 							<Grid container spacing={5}>
 								<Grid item xs={6}>

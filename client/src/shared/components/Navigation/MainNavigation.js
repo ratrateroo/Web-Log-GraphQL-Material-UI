@@ -20,23 +20,63 @@ const MainNavigation = ({ colorMode }) => {
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
 				<Toolbar>
-					<IconButton
+					{/* <IconButton
 						size="medium"
 						edge="start"
 						color="inherit"
 						aria-label="menu"
 						sx={{ mr: 2, display: { xs: 'flex', md: 'none' } }}>
 						<MenuIcon />
-					</IconButton>
+					</IconButton> */}
 					<Typography
 						variant="h6"
 						component="div"
 						sx={{
 							flexGrow: 1,
 							mr: 2,
-							display: { xs: 'none', md: 'flex' },
+							display: { xs: 'flex', sm: 'none', md: 'none', lg: 'none', xl: 'none' },
 						}}>
-						LOGO
+						XS
+					</Typography>
+					<Typography
+						variant="h6"
+						component="div"
+						sx={{
+							flexGrow: 1,
+							mr: 2,
+							display: { xs: 'none', sm: 'flex', md: 'none', lg: 'none', xl: 'none' },
+						}}>
+						SM
+					</Typography>
+					<Typography
+						variant="h6"
+						component="div"
+						sx={{
+							flexGrow: 1,
+							mr: 2,
+							display: { xs: 'none', sm: 'none', md: 'flex', lg: 'none', xl: 'none' },
+						}}>
+						MD
+					</Typography>
+					<Typography
+						variant="h6"
+						component="div"
+						sx={{
+							flexGrow: 1,
+							mr: 2,
+							display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex', xl: 'none' },
+						}}>
+						LG
+					</Typography>
+					<Typography
+						variant="h6"
+						component="div"
+						sx={{
+							flexGrow: 1,
+							mr: 2,
+							display: { xs: 'none', sm: 'none', md: 'none', lg: 'none', xl: 'flex' },
+						}}>
+						XL
 					</Typography>
 					<DefaultNavigation />
 					<UserNavigation />
