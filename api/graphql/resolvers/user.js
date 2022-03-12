@@ -73,25 +73,32 @@ const userResolvers = {
 		return transformUser(existingUser);
 	},
 
-	login: async ({ username, password }) => {
-		const user = await User.findOne({ username: username });
-		if (!user) {
-			throw new Error('User does not exist!');
+	logInUser: async (args) => {
+		console.log(args);
+		console.log('User: ' + args.userInput.username + ' logged in.');
+
+		try {
+			const user = await User.findOne({ username: args.userInput.username });
+
+			if (!user) {
+				throw new Error('User does not exist.');
+			}
+
+			const isEqual = await bcrypt.compare(args.userInput.password, user.password);
+
+			if (!isEqual) {
+				throw new Error('Password is incorrect.');
+			}
+
+			const token = jwt.sign({ userId: user.id, email: user.email }, 'secretkeyforhashing', {
+				expiresIn: '1h',
+			});
+			console.log(token);
+
+			return { userId: user.id, token: token, tokenExpiration: 1 };
+		} catch (error) {
+			console.log(error);
 		}
-		const isEqual = await bcrypt.compare(password, user.password);
-
-		if (!isEqual) {
-			throw new Error('Password is incorrect!');
-		}
-		console.log('User: ' + username + ' logged in.');
-
-		const token = jwt.sign({ userId: user.id, email: user.email }, 'secretkeyforhashing', {
-			expiresIn: '1h',
-		});
-
-		//console.log(req);
-
-		return { userId: user.id, token: token, tokenExpiration: 1 };
 	},
 	storeUpload: async (file) => {
 		const { createReadStream, filename, mimetype, encoding } = await file.file;

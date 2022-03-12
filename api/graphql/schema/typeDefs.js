@@ -51,13 +51,18 @@ const typeDefs = gql`
 		encoding: String!
 	}
 
-	input UserInput {
+	input UserSignUpInput {
 		username: String!
 		email: String!
 		password: String
 		firstname: String!
 		middlename: String!
 		lastname: String!
+	}
+
+	input UserLogInInput {
+		username: String!
+		password: String
 	}
 
 	input BlogInput {
@@ -76,8 +81,8 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
-		createUser(userInput: UserInput): AuthData!
-		signUpUser(userInput: UserInput): AuthData!
+		signUpUser(userInput: UserSignUpInput): AuthData!
+		logInUser(userInput: UserLogInInput): AuthData!
 		createBlog(blogInput: BlogInput): Blog
 		addFriend(friendId: ID!): Friend!
 		removeFriend(friendId: ID!): Friend!

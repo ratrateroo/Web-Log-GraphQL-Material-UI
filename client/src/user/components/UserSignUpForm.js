@@ -204,7 +204,7 @@ const UserSignUpForm = () => {
 							{error
 								? error.message === 'Username exists already.' ||
 								  error.message === 'Email already taken.'
-									? error.message + '!'
+									? error.message
 									: 'Something went wrong, please try again.'
 								: '\u00A0'}
 						</Typography>

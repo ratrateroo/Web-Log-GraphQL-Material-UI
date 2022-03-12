@@ -18,6 +18,9 @@ const resolvers = {
 		signUpUser: (_, data) => {
 			return userResolvers.signUpUser(data);
 		},
+		logInUser: (_, data) => {
+			return userResolvers.logInUser(data);
+		},
 
 		uploadProfileImage: (_, { file }) => userResolvers.storeUpload(file),
 	},

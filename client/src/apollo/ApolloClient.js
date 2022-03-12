@@ -7,6 +7,7 @@ import { getUserData } from '../services/UserData/index';
 const authLink = setContext((_, { headers }) => {
 	//const userData = localStorage.getItem(LOGGED_IN_USER);
 	const userData = getUserData();
+
 	console.log('Client');
 	console.log(`Bearer ${userData.token}`);
 	if (!userData.token) {
