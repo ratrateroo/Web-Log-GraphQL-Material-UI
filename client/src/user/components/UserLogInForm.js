@@ -42,7 +42,7 @@ const UserSignUpForm = () => {
 				tokenExpiration: logInUser.tokenExpiration,
 			});
 			localStorage.setItem('Token', JSON.stringify(logInUser.token));
-			console.log(logInUser);
+
 			setFormData(
 				{
 					username: {

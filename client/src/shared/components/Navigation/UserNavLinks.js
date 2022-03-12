@@ -8,7 +8,6 @@ import { Link as RouterLink, useMatch, useResolvedPath } from 'react-router-dom'
 
 const CustomLink = ({ children, to, ...props }) => {
 	let resolved = useResolvedPath(to);
-	console.log(resolved);
 	let match = useMatch({ path: resolved.pathname, end: true });
 	const theme = useTheme();
 

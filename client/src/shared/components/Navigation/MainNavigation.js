@@ -16,6 +16,7 @@ import UserNavigation from './UserNavigation';
 
 const MainNavigation = ({ colorMode }) => {
 	const theme = useTheme();
+
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">

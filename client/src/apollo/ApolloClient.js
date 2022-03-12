@@ -30,7 +30,7 @@ const uploadLink = createUploadLink({
 	// credentials: 'include',
 });
 
-const httpLink = new HttpLink({ uri: `http://localhost:8000/graphql` });
+//const httpLink = new HttpLink({ uri: `http://localhost:8000/graphql` });
 
 //new client
 // export const client = new ApolloClient({
@@ -39,7 +39,7 @@ const httpLink = new HttpLink({ uri: `http://localhost:8000/graphql` });
 // });
 
 export const client = new ApolloClient({
-	link: ApolloLink.from([authLink, uploadLink, httpLink]),
+	link: ApolloLink.from([authLink, uploadLink]),
 	cache: new InMemoryCache(),
 });
 

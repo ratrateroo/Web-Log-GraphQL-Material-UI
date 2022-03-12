@@ -6,8 +6,6 @@ let userData = {
 export const setUserData = (s) => {
 	console.log('User Data Set.');
 	userData = s;
-	console.log(s.token);
-	localStorage.setItem('Token', JSON.stringify(s.token));
 };
 
 export const getUserData = () => {
