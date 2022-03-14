@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 
 import { gql, useMutation } from '@apollo/client';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import Input from '../../components/FormElements/Input/index';
+import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm/index';
 import { setUserData } from '../../services/UserData/index';
 import {
@@ -48,17 +49,20 @@ const SIGNUP_MUTATION = gql`
 `;
 
 const UserSignUpForm = () => {
+	const { login } = useContext(AuthContext);
 	let navigate = useNavigate();
 	let location = useLocation();
 	let from = location.state?.from?.pathname || '/';
 
 	const [signUpUser, { error, data }] = useMutation(SIGNUP_MUTATION, {
-		onCompleted: (data) => {
+		onCompleted: ({ signUpUser }) => {
 			setUserData({
-				token: data.token,
-				userId: data.userId,
-				tokenExpiration: data.tokenExpiration,
+				token: signUpUser.token,
+				userId: signUpUser.userId,
+				tokenExpiration: signUpUser.tokenExpiration,
 			});
+			login(signUpUser.token, signUpUser.userId, signUpUser.tokenExpiration);
+			localStorage.setItem('Token', JSON.stringify(signUpUser.token));
 			setFormData(
 				{
 					username: {

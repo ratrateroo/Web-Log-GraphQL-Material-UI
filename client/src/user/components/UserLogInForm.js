@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 
 import { gql, useMutation } from '@apollo/client';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import Input from '../../components/FormElements/Input/index';
+import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm/index';
 import { setUserData } from '../../services/UserData/index';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
@@ -29,7 +30,8 @@ const LOGIN_MUTATION = gql`
 	}
 `;
 
-const UserSignUpForm = () => {
+const UserLogInForm = () => {
+	const { login } = useContext(AuthContext);
 	let navigate = useNavigate();
 	let location = useLocation();
 	let from = location.state?.from?.pathname || '/';
@@ -41,6 +43,7 @@ const UserSignUpForm = () => {
 				userId: logInUser.userId,
 				tokenExpiration: logInUser.tokenExpiration,
 			});
+			login(logInUser.token, logInUser.userId, logInUser.tokenExpiration);
 			localStorage.setItem('Token', JSON.stringify(logInUser.token));
 
 			setFormData(
@@ -57,7 +60,7 @@ const UserSignUpForm = () => {
 				},
 				false
 			);
-			navigate(from, { replace: true });
+			navigate('/users', { replace: true });
 		},
 	});
 
@@ -198,4 +201,4 @@ const UserSignUpForm = () => {
 	);
 };
 
-export default UserSignUpForm;
+export default UserLogInForm;

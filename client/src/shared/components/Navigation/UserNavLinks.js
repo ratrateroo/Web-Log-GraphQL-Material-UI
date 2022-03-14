@@ -2,7 +2,13 @@ import React, { Fragment, useContext } from 'react';
 
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
-import { Link as RouterLink, useMatch, useResolvedPath } from 'react-router-dom';
+import {
+	Link as RouterLink,
+	useMatch,
+	useResolvedPath,
+	useNavigate,
+	useLocation,
+} from 'react-router-dom';
 
 import AuthContext from '../../../context/AuthContext';
 
@@ -28,20 +34,31 @@ const CustomLink = ({ children, to, onClick }) => {
 };
 
 const UserNavLinks = () => {
-	//const { isLoggedIn, logout } = useContext(AuthContext);
+	let navigate = useNavigate();
 
 	const { isLoggedIn, logout } = useContext(AuthContext);
 
+	// let resolved = useResolvedPath(to);
+	let location = useLocation();
+	let match = useMatch({ path: location.pathname, end: true });
+	const theme = useTheme();
+
 	const logOutHandler = () => {
 		logout();
+		navigate('/', { replace: true });
 	};
 
 	return (
 		<Fragment>
 			{isLoggedIn ? (
-				<CustomLink to="/" onClick={logOutHandler}>
+				<Button
+					onClick={logOutHandler}
+					sx={{
+						backgroundColor: match ? theme.palette.secondary.main : 'none',
+						color: 'inherit',
+					}}>
 					Logout
-				</CustomLink>
+				</Button>
 			) : (
 				<Fragment>
 					<CustomLink to="/signup">Signup</CustomLink>
