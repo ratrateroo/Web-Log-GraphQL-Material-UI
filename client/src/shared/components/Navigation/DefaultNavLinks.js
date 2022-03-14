@@ -3,8 +3,6 @@ import React, { Fragment } from 'react';
 import Button from '@mui/material/Button';
 import { Link as RouterLink } from 'react-router-dom';
 
-// import { AuthContext } from '../../context/auth-context';
-
 const DefaultNavLinks = () => {
 	// const auth = useContext(AuthContext);
 
@@ -13,14 +11,12 @@ const DefaultNavLinks = () => {
 			<Button color="inherit" to="/" component={RouterLink}>
 				Home
 			</Button>
+			<Button color="inherit" to="/profile/622c7e8e949a05e24be5cf94" component={RouterLink}>
+				Profile
+			</Button>
 			<Button color="inherit" to="/users" component={RouterLink}>
 				Users
 			</Button>
-			{/* {auth.token && (
-				<Button color="inherit" to="/friends" component={RouterLink}>
-					Friends
-				</Button>
-			)} */}
 		</Fragment>
 	);
 };

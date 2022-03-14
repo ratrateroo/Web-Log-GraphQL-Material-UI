@@ -6,6 +6,7 @@ import RequireAuth from './auth/RequireAuth';
 import { ColorModeContext } from './context/ColorModeContext';
 import Layout from './shared/components/Layout/Layout';
 import UserLogIn from './user/pages/UserLogIn';
+import UserProfile from './user/pages/UserProfile';
 import Users from './user/pages/Users';
 import UserSignUp from './user/pages/UserSignUp';
 
@@ -16,6 +17,7 @@ const App = () => {
 		<Fragment>
 			<Routes>
 				<Route path="/" element={<Layout colorMode={colorMode} />}>
+					<Route path="/profile/:uid" element={<UserProfile />} />
 					<Route path="/signup" element={<UserSignUp />} />
 					<Route path="/login" element={<UserLogIn />} />
 					<Route

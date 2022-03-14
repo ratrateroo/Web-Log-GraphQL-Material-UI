@@ -10,9 +10,6 @@ const resolvers = {
 		profileImage: (_, data) => {
 			return userResolvers.profileImage(data);
 		},
-		login: (_, data) => {
-			return userResolvers.login(data);
-		},
 	},
 	Mutation: {
 		signUpUser: (_, data) => {
