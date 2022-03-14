@@ -197,7 +197,6 @@ const UserSignUpForm = () => {
 										label="Username"
 										placeholder="Enter your username here!"
 										fullWidth
-										required={true}
 										margin="normal"
 										size="small"
 										onInput={inputHandler}
@@ -210,19 +209,17 @@ const UserSignUpForm = () => {
 										label="Password"
 										placeholder="Enter your password here!"
 										fullWidth
-										required={true}
 										margin="normal"
 										size="small"
 										onInput={inputHandler}
 										validators={[VALIDATOR_MINLENGTH(5)]}
 									/>
 									<Input
-										type="email"
+										type="text"
 										id="email"
 										label="Email"
 										placeholder="Enter your email here!"
 										fullWidth
-										required={true}
 										margin="normal"
 										size="small"
 										onInput={inputHandler}
@@ -239,7 +236,6 @@ const UserSignUpForm = () => {
 										label="Firstname"
 										placeholder="Enter your first name here!"
 										fullWidth
-										required={true}
 										margin="normal"
 										size="small"
 										onInput={inputHandler}
@@ -251,7 +247,6 @@ const UserSignUpForm = () => {
 										label="Middlename"
 										placeholder="Enter your middle name here!"
 										fullWidth
-										required={true}
 										margin="normal"
 										size="small"
 										onInput={inputHandler}
@@ -263,7 +258,6 @@ const UserSignUpForm = () => {
 										label="Lastname"
 										placeholder="Enter your last name here!"
 										fullWidth
-										required={true}
 										margin="normal"
 										size="small"
 										onInput={inputHandler}

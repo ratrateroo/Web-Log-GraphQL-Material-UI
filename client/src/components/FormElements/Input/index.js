@@ -70,6 +70,8 @@ const Input = (props) => {
 			/>
 		) : (
 			<TextField
+				name="password"
+				autoComplete="off"
 				type={props.type}
 				id={props.id}
 				label={props.label}
