@@ -21,9 +21,7 @@ import {
 	VALIDATOR_EMAIL,
 } from '../../services/validators/index';
 
-//import { setUserData } from '../util/userData';
-
-export const SIGNUP_MUTATION = gql`
+const SIGNUP_MUTATION = gql`
 	mutation SignUpMutation(
 		$username: String!
 		$email: String!
@@ -146,41 +144,9 @@ const UserSignUpForm = () => {
 		}
 	};
 
-	// function usernameChangeHandler(e) {
-	// 	setUser({
-	// 		...user,
-	// 		username: e.target.value,
-	// 	});
-	// }
-
-	// function signUpUserHandler(e) {
-	// 	e.preventDefault();
-
-	// 	try {
-	// 		signUpUser({
-	// 			variables: {
-	// 				username: user.username,
-	// 			},
-	// 			onCompleted: ({ signUpUser }) => {
-	// 				// setUserData({
-	// 				// 	token: signUpUser.token,
-	// 				// 	userId: signUpUser.userId,
-	// 				// 	tokenExpiration: signUpUser.tokenExpiration,
-	// 				// });
-	// 			},
-	// 		}).catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-
-	// 	console.log(user);
-	// }
-
 	return (
 		<Fragment>
-			<Container component="main" maxWidth="md">
+			<Container component="main">
 				<CssBaseline />
 				<Box
 					sx={{

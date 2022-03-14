@@ -19,7 +19,7 @@ import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validator
 
 //import { setUserData } from '../util/userData';
 
-export const LOGIN_MUTATION = gql`
+const LOGIN_MUTATION = gql`
 	mutation LogInMutation($username: String!, $password: String) {
 		logInUser(userInput: { username: $username, password: $password }) {
 			userId
@@ -96,7 +96,7 @@ const UserSignUpForm = () => {
 
 	return (
 		<Fragment>
-			<Container component="main" maxWidth="md">
+			<Container component="main">
 				<CssBaseline />
 				<Box
 					sx={{

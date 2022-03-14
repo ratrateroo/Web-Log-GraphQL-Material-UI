@@ -1,105 +1,86 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
-import { gql, useMutation } from '@apollo/client';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Avatar from '@mui/material/Avatar';
+import { gql, useLazyQuery } from '@apollo/client';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { useNavigate, useLocation } from 'react-router-dom';
 
-import Input from '../../components/FormElements/Input/index';
-import { useForm } from '../../hooks/useForm/index';
-import { setUserData } from '../../services/UserData/index';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
 import User from './User';
 
-//import { setUserData } from '../util/userData';
-
-export const LOGIN_MUTATION = gql`
-	mutation LogInMutation($username: String!, $password: String) {
-		logInUser(userInput: { username: $username, password: $password }) {
-			userId
-			token
-			tokenExpiration
+const USERS_QUERY = gql`
+	{
+		users {
+			_id
+			username
+			email
+			password
+			firstname
+			middlename
+			lastname
+			profileimage
 		}
 	}
 `;
 
 const UsersList = () => {
-	let navigate = useNavigate();
-	let location = useLocation();
-	let from = location.state?.from?.pathname || '/';
+	const [loadedUsers, setLoadedUsers] = useState([]);
 
-	const [logInUser, { error, data }] = useMutation(LOGIN_MUTATION, {
-		onCompleted: ({ logInUser }) => {
-			setUserData({
-				token: logInUser.token,
-				userId: logInUser.userId,
-				tokenExpiration: logInUser.tokenExpiration,
-			});
-			localStorage.setItem('Token', JSON.stringify(logInUser.token));
+	const [getUsers, { data, loading, error }] = useLazyQuery(USERS_QUERY);
 
-			setFormData(
-				{
-					username: {
-						value: '',
-						isValid: true,
-					},
-
-					password: {
-						value: '',
-						isValid: true,
-					},
-				},
-				false
-			);
-			navigate(from, { replace: true });
-		},
-	});
-
-	//useForm Hook
-	const [formState, inputHandler, setFormData] = useForm(
-		{
-			username: {
-				value: '',
-				isValid: true,
-			},
-
-			password: {
-				value: '',
-				isValid: true,
-			},
-		},
-		false
-	);
-
-	const logInUserHandler = (e) => {
-		e.preventDefault();
-
+	useEffect(async () => {
 		try {
-			logInUser({
-				variables: {
-					username: formState.inputs.username.value,
-					password: formState.inputs.password.value,
-				},
-			}).catch((err) => {
-				console.log(err);
-			});
-		} catch (error) {
-			console.log(error);
+			await getUsers();
+			setLoadedUsers(data.users);
+			console.log(data);
+		} catch (err) {
+			console.log(err);
 		}
-	};
+	}, [data, getUsers]);
 
 	return (
 		<Fragment>
-			<Container component="main" maxWidth="md">
+			<Container component="main">
 				<CssBaseline />
 				<Typography>Users List</Typography>
+				<Box sx={{ flexGrow: 1, mt: 2 }}>
+					<Grid container spacing={2}>
+						{/* {loadedUsers.map(user,index) => {
+                        <Grid item>
+						<UserCard username={user.}/>
+					</Grid>
+                    }} */}
+						{loading && (
+							<Typography gutterBottom variant="h5" component="div">
+								Loading...
+							</Typography>
+						)}
+						{error && (
+							<Typography gutterBottom variant="h5" component="div">
+								Some error occured...
+							</Typography>
+						)}
+						{data &&
+							loadedUsers.map((user) => (
+								<Grid item key={user._id}>
+									<User
+										id={user._id}
+										username={user.username}
+										email={user.email}
+										firstname={user.firstname}
+										middlename={user.middlename}
+										lastname={user.lastname}
+										profileimage={user.profileimage}
+									/>
+								</Grid>
+							))}
+
+						{/* <Grid item xs={6} md={8}>
+						<UserCard />
+					</Grid> */}
+					</Grid>
+				</Box>
 				<User />
 			</Container>
 		</Fragment>
