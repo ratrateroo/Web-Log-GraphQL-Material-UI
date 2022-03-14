@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
 import { gql, useLazyQuery } from '@apollo/client';
+import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,6 +30,7 @@ const UsersList = () => {
 
 	const [getUsers, { data, loading, error }] = useLazyQuery(USERS_QUERY);
 
+	const theme = useTheme();
 	useEffect(async () => {
 		try {
 			await getUsers();
@@ -41,30 +43,47 @@ const UsersList = () => {
 
 	return (
 		<Fragment>
-			<Container component="main">
+			<Container
+				component="main"
+				sx={{
+					mt: '1rem',
+					mb: '2rem',
+					maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' },
+				}}>
 				<CssBaseline />
-				<Typography>Users List</Typography>
-				<Box sx={{ flexGrow: 1, mt: 2 }}>
+
+				<Typography variant="h5" component="h5" color="secondary">
+					Users List
+				</Typography>
+
+				<Box sx={{ flexGrow: 1, mt: 2, p: 2 }}>
 					<Grid container spacing={2}>
-						{/* {loadedUsers.map(user,index) => {
-                        <Grid item>
-						<UserCard username={user.}/>
-					</Grid>
-                    }} */}
-						{loading && (
-							<Typography gutterBottom variant="h5" component="div">
-								Loading...
-							</Typography>
-						)}
 						{error && (
-							<Typography gutterBottom variant="h5" component="div">
-								Some error occured...
-							</Typography>
+							<Grid>
+								<Typography
+									gutterBottom
+									variant="h6"
+									component="h6"
+									color={theme.palette.error.main}>
+									Some error occured...
+								</Typography>
+							</Grid>
 						)}
-						{data &&
+						{loading ? (
+							<Grid>
+								<Typography
+									gutterBottom
+									variant="h6"
+									component="h6"
+									color={theme.palette.info.main}>
+									Loading users...
+								</Typography>
+							</Grid>
+						) : (
 							loadedUsers.map((user) => (
 								<Grid item key={user._id}>
 									<User
+										key={user._id}
 										id={user._id}
 										username={user.username}
 										email={user.email}
@@ -74,14 +93,10 @@ const UsersList = () => {
 										profileimage={user.profileimage}
 									/>
 								</Grid>
-							))}
-
-						{/* <Grid item xs={6} md={8}>
-						<UserCard />
-					</Grid> */}
+							))
+						)}
 					</Grid>
 				</Box>
-				<User />
 			</Container>
 		</Fragment>
 	);

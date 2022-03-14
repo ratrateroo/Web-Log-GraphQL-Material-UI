@@ -96,7 +96,11 @@ const UserSignUpForm = () => {
 
 	return (
 		<Fragment>
-			<Container component="main">
+			<Container
+				component="main"
+				sx={{
+					maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' },
+				}}>
 				<CssBaseline />
 				<Box
 					sx={{

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
@@ -10,23 +9,26 @@ import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
 	return (
-		<Button to={`/profile/${props.id}`} component={NavLink}>
-			<Card sx={{ maxWidth: 300 }}>
-				<CardActionArea>
-					<CardMedia
-						component="img"
-						height="250"
-						image={`http://localhost:8000/freefiles/images/${props.profileimage}`}
-						alt={(props.id + props.username + props.profileimage).toString()}
-					/>
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="div">
-							{props.username}
-						</Typography>
-					</CardContent>
-				</CardActionArea>
-			</Card>
-		</Button>
+		<Card sx={{ maxWidth: 300, m: 1 }}>
+			<CardActionArea to={`/profile/${props.id}`} component={NavLink}>
+				<CardMedia
+					component="img"
+					height="150"
+					image={
+						props.profileimage === 'defaultimage'
+							? 'http://localhost:8000/freefiles/images/user_image.png'
+							: `http://localhost:8000/freefiles/images/${props.profileimage}`
+					}
+					alt={(props.username + ' profile image').toString()}
+				/>
+
+				<CardContent>
+					<Typography gutterBottom variant="h6" component="h6">
+						{props.username}
+					</Typography>
+				</CardContent>
+			</CardActionArea>
+		</Card>
 	);
 };
 
