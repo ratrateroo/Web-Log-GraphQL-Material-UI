@@ -10,7 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Input from '../../components/FormElements/Input/index';
 import AuthContext from '../../context/AuthContext';
@@ -33,8 +33,6 @@ const LOGIN_MUTATION = gql`
 const UserLogInForm = () => {
 	const { login } = useContext(AuthContext);
 	let navigate = useNavigate();
-	let location = useLocation();
-	let from = location.state?.from?.pathname || '/';
 
 	const [logInUser, { error, data }] = useMutation(LOGIN_MUTATION, {
 		onCompleted: ({ logInUser }) => {
