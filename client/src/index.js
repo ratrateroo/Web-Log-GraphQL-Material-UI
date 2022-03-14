@@ -7,17 +7,20 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import { client } from './apollo/ApolloClient';
 import App from './App';
+import AuthProvider from './context/AuthProvider';
 import ColorModeProvider from './context/ColorModeProvider';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 	<React.StrictMode>
 		<ApolloProvider client={client}>
-			<ColorModeProvider>
-				<Router>
-					<App />
-				</Router>
-			</ColorModeProvider>
+			<AuthProvider>
+				<ColorModeProvider>
+					<Router>
+						<App />
+					</Router>
+				</ColorModeProvider>
+			</AuthProvider>
 		</ApolloProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

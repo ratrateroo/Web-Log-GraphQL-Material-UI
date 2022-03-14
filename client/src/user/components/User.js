@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
 	return (
-		<Card sx={{ maxWidth: 300, m: 1 }}>
+		<Card sx={{ maxWidth: 300 }}>
 			<CardActionArea to={`/profile/${props.id}`} component={NavLink}>
 				<CardMedia
 					component="img"

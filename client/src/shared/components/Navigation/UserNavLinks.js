@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import { Link as RouterLink, useMatch, useResolvedPath } from 'react-router-dom';
 
-//import { AuthContext } from '../../auth/AuthContext';
+import AuthContext from '../../../context/AuthContext';
 
-const CustomLink = ({ children, to, ...props }) => {
+const CustomLink = ({ children, to, onClick }) => {
 	let resolved = useResolvedPath(to);
 	let match = useMatch({ path: resolved.pathname, end: true });
 	const theme = useTheme();
@@ -20,7 +20,7 @@ const CustomLink = ({ children, to, ...props }) => {
 				sx={{
 					backgroundColor: match ? theme.palette.secondary.main : 'none',
 				}}
-				{...props}>
+				onClick={onClick}>
 				{children}
 			</Button>
 		</div>
@@ -30,11 +30,24 @@ const CustomLink = ({ children, to, ...props }) => {
 const UserNavLinks = () => {
 	//const { isLoggedIn, logout } = useContext(AuthContext);
 
+	const { isLoggedIn, logout } = useContext(AuthContext);
+
+	const logOutHandler = () => {
+		logout();
+	};
+
 	return (
 		<Fragment>
-			<CustomLink to="/signup">Signup</CustomLink>
-			<CustomLink to="/login">Login</CustomLink>
-			<CustomLink to="/">Logout</CustomLink>
+			{isLoggedIn ? (
+				<CustomLink to="/" onClick={logOutHandler}>
+					Logout
+				</CustomLink>
+			) : (
+				<Fragment>
+					<CustomLink to="/signup">Signup</CustomLink>
+					<CustomLink to="/login">Login</CustomLink>
+				</Fragment>
+			)}
 		</Fragment>
 	);
 };
