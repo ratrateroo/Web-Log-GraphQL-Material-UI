@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 
 import { gql, useQuery } from '@apollo/client';
-import { useTheme } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
+import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 
@@ -42,7 +42,6 @@ const UserProfileInfo = () => {
 	});
 
 	console.log(data);
-	const theme = useTheme();
 
 	return (
 		<Fragment>
@@ -54,15 +53,6 @@ const UserProfileInfo = () => {
 					maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' },
 				}}>
 				<CssBaseline />
-				{loading ? (
-					<Typography variant="h5" component="h5" color="secondary">
-						Loading user...
-					</Typography>
-				) : (
-					<Typography variant="h5" component="h5" color="secondary">
-						{data.user.firstname + ' ' + data.user.middlename + ' ' + data.user.lastname}
-					</Typography>
-				)}
 
 				{error && (
 					<Typography variant="h5" component="h5" color="secondary">
@@ -71,31 +61,33 @@ const UserProfileInfo = () => {
 				)}
 
 				<Box sx={{ flexGrow: 1, mt: 2, p: 2 }}>
-					<Grid container spacing={2}>
-						{loading ? (
-							<Grid>
-								<Typography
-									gutterBottom
-									variant="h6"
-									component="h6"
-									color={theme.palette.info.main}>
-									Loading user...
-								</Typography>
+					{loading ? (
+						<LinearProgress color="secondary" />
+					) : (
+						<Fragment>
+							<Typography variant="h5" component="h5" color="secondary">
+								{data.user.firstname +
+									' ' +
+									data.user.middlename +
+									' ' +
+									data.user.lastname}
+							</Typography>
+
+							<Grid container spacing={2}>
+								<Grid>
+									<Avatar
+										alt="Profile Image"
+										src={
+											data.user.profileimage === 'defaultimage'
+												? 'http://localhost:8000/freefiles/images/user_image.png'
+												: `http://localhost:8000/freefiles/images/${data.user.profileimage}`
+										}
+										sx={{ width: 56, height: 56 }}
+									/>
+								</Grid>
 							</Grid>
-						) : (
-							<Grid>
-								<Avatar
-									alt="Profile Image"
-									src={
-										data.user.profileimage === 'defaultimage'
-											? 'http://localhost:8000/freefiles/images/user_image.png'
-											: `http://localhost:8000/freefiles/images/${data.user.profileimage}`
-									}
-									sx={{ width: 56, height: 56 }}
-								/>
-							</Grid>
-						)}
-					</Grid>
+						</Fragment>
+					)}
 				</Box>
 			</Container>
 		</Fragment>
