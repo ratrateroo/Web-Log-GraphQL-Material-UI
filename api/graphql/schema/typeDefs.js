@@ -16,8 +16,8 @@ const typeDefs = gql`
 		middlename: String!
 		lastname: String!
 		createdBlogs: [Blog!]
-		createAt: String!
-		updateAt: String!
+		createdAt: String!
+		updatedAt: String!
 		profileimage: String!
 	}
 

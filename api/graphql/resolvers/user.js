@@ -8,7 +8,7 @@ const { transformUser } = require('./merge');
 const userResolvers = {
 	user: async ({ id }) => {
 		const user = await User.findById(id);
-		//console.log(user._doc);
+		console.log(user._doc);
 
 		return transformUser(user);
 	},

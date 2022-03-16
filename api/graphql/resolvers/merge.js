@@ -41,8 +41,11 @@ const transformUser = (user) => {
 		middlename: user.middlename,
 		lastname: user.lastname,
 		profileimage: user.profileimage,
+		createdAt: user.createdAt,
+		updatedAt: user.updatedAt,
 
-		createdBlogs: blogs.bind(this, user.author),
+		//createdBlogs: user.createdBlogs.length,
+		//createdBlogs: blogs.bind(this, user.author),
 	};
 };
 

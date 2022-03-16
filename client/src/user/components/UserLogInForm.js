@@ -103,6 +103,7 @@ const UserLogInForm = () => {
 					maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' },
 				}}>
 				<CssBaseline />
+
 				<Box
 					sx={{
 						marginTop: 5,
