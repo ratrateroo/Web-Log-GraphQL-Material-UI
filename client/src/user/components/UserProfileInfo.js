@@ -138,18 +138,7 @@ const UserProfileInfo = () => {
 										xl: 'space-even',
 									}}
 									alignItems="center"
-									spacing={2}
-									sx={
-										{
-											// backgroundColor: {
-											// 	xs: 'orange',
-											// 	sm: 'green',
-											// 	md: 'blue',
-											// 	lg: 'yellow',
-											// 	xl: 'row',
-											// },
-										}
-									}>
+									spacing={2}>
 									<Grid
 										item
 										xs={5}
