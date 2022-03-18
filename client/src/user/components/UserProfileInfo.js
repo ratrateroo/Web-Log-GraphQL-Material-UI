@@ -139,15 +139,7 @@ const UserProfileInfo = () => {
 									}}
 									alignItems="center"
 									spacing={2}>
-									<Grid
-										item
-										xs={5}
-										md={5}
-										sx={
-											{
-												// backgroundColor: 'purple',
-											}
-										}>
+									<Grid item xs={5} md={5}>
 										<Avatar
 											alt="Profile Image"
 											src={
@@ -158,15 +150,7 @@ const UserProfileInfo = () => {
 											sx={{ width: '10rem', height: '10rem' }}
 										/>
 									</Grid>
-									<Grid
-										item
-										xs={5}
-										md={5}
-										sx={
-											{
-												// backgroundColor: 'purple',
-											}
-										}>
+									<Grid item xs={5} md={5}>
 										<Grid container spacing={3}>
 											<Grid item>
 												<Typography
