@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
@@ -149,6 +150,9 @@ const UserProfileInfo = () => {
 											}
 											sx={{ width: '10rem', height: '10rem' }}
 										/>
+										<Button type="submit" variant="contained" sx={{}} size="small">
+											Update Photo
+										</Button>
 									</Grid>
 									<Grid item xs={5} md={5}>
 										<Grid container spacing={3}>
