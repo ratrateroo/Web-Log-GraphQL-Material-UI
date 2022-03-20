@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import { gql, useQuery } from '@apollo/client';
 import Avatar from '@mui/material/Avatar';
@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import LinearProgress from '@mui/material/LinearProgress';
+import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
@@ -40,6 +41,7 @@ const USER_QUERY = gql`
 // `;
 
 const UserProfileInfo = () => {
+	const [openUpdateModal, setOpenUpdateModal] = useState(false);
 	const params = useParams();
 	const { uid } = params;
 	const { data, loading, error } = useQuery(USER_QUERY, {
@@ -47,6 +49,14 @@ const UserProfileInfo = () => {
 	});
 	const theme = useTheme();
 	console.log(data);
+
+	const openModalHandler = () => {
+		setOpenUpdateModal(true);
+	};
+
+	const closeModalHandler = () => {
+		setOpenUpdateModal(false);
+	};
 
 	return (
 		<Fragment>
@@ -154,7 +164,8 @@ const UserProfileInfo = () => {
 											type="submit"
 											variant="contained"
 											sx={{ width: '10rem', marginTop: '10px' }}
-											size="small">
+											size="small"
+											onClick={openModalHandler}>
 											Update Photo
 										</Button>
 									</Grid>
@@ -265,6 +276,20 @@ const UserProfileInfo = () => {
 									</Grid>
 								</Grid>
 							</Paper>
+							<Modal
+								open={openUpdateModal}
+								onClose={closeModalHandler}
+								aria-labelledby="modal-modal-title"
+								aria-describedby="modal-modal-description">
+								<Box>
+									<Typography id="modal-modal-title" variant="h6" component="h2">
+										Text in a modal
+									</Typography>
+									<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+										Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+									</Typography>
+								</Box>
+							</Modal>
 						</Fragment>
 					)}
 				</Box>
