@@ -150,7 +150,11 @@ const UserProfileInfo = () => {
 											}
 											sx={{ width: '10rem', height: '10rem' }}
 										/>
-										<Button type="submit" variant="contained" sx={{}} size="small">
+										<Button
+											type="submit"
+											variant="contained"
+											sx={{ width: '10rem', marginTop: '10px' }}
+											size="small">
 											Update Photo
 										</Button>
 									</Grid>
