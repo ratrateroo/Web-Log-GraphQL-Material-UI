@@ -280,7 +280,8 @@ const UserProfileInfo = () => {
 								open={openUpdateModal}
 								onClose={closeModalHandler}
 								aria-labelledby="modal-modal-title"
-								aria-describedby="modal-modal-description">
+								aria-describedby="modal-modal-description"
+								sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 								<Box>
 									<Typography id="modal-modal-title" variant="h6" component="h2">
 										Text in a modal
