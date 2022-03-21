@@ -1,12 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useRef } from 'react';
 
 import { gql, useQuery } from '@apollo/client';
+import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
 import LinearProgress from '@mui/material/LinearProgress';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
@@ -42,6 +45,7 @@ const USER_QUERY = gql`
 
 const UserProfileInfo = () => {
 	const [openUpdateModal, setOpenUpdateModal] = useState(false);
+	const inputFileEl = useRef(null);
 	const params = useParams();
 	const { uid } = params;
 	const { data, loading, error } = useQuery(USER_QUERY, {
@@ -56,6 +60,10 @@ const UserProfileInfo = () => {
 
 	const closeModalHandler = () => {
 		setOpenUpdateModal(false);
+	};
+
+	const fileSelectorHander = () => {
+		inputFileEl.current.click();
 	};
 
 	return (
@@ -282,13 +290,70 @@ const UserProfileInfo = () => {
 								aria-labelledby="modal-modal-title"
 								aria-describedby="modal-modal-description"
 								sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-								<Box>
-									<Typography id="modal-modal-title" variant="h6" component="h2">
-										Text in a modal
-									</Typography>
-									<Typography id="modal-modal-description" sx={{ mt: 2 }}>
-										Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-									</Typography>
+								<Box component={Paper} elevation={3} sx={{}}>
+									<Grid
+										container
+										direction="column"
+										justifyContent="center"
+										alignItems="center"
+										sx={{
+											padding: '1rem',
+										}}>
+										<Grid
+											item
+											sx={{
+												display: 'flex',
+												justifyContent: 'flex-end',
+												width: '100%',
+											}}>
+											<IconButton
+												aria-label="close update image modal"
+												size="small"
+												onClick={closeModalHandler}>
+												<CloseIcon />
+											</IconButton>
+										</Grid>
+										<Grid item>
+											<Typography id="modal-modal-title" variant="h6" component="h2">
+												Text in a modal
+											</Typography>
+										</Grid>
+										<Grid item>
+											<Avatar
+												alt="Profile Image"
+												src={
+													data.user.profileimage === 'defaultimage'
+														? 'http://localhost:8000/freefiles/images/user_image.png'
+														: `http://localhost:8000/freefiles/images/${data.user.profileimage}`
+												}
+												sx={{ width: '10rem', height: '10rem' }}
+											/>
+										</Grid>
+										<Grid item>
+											{/* <label htmlFor="raised-button-file"> */}
+											<Button
+												variant="contained"
+												sx={{ width: '10rem', marginTop: '10px' }}
+												size="small"
+												component="span"
+												onClick={fileSelectorHander}>
+												Update Photo
+											</Button>
+											{/* </label> */}
+
+											<Input
+												inputRef={inputFileEl}
+												type="file"
+												accept="image/*"
+												sx={{ display: 'none' }}
+												multiple
+												id="raised-button-file"
+												onChange={() => console.log('changed')}
+												onClick={() => console.log('clicked')}
+												onInput={() => console.log('input')}
+											/>
+										</Grid>
+									</Grid>
 								</Box>
 							</Modal>
 						</Fragment>
