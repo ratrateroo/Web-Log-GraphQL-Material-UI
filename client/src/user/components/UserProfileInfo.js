@@ -157,85 +157,103 @@ const UserProfileInfo = () => {
 										xl: 'space-even',
 									}}
 									alignItems="center"
-									spacing={2}>
+									spacing={1}>
 									<Grid item xs={5} md={5}>
-										<Avatar
-											alt="Profile Image"
-											src={
-												data.user.profileimage === 'defaultimage'
-													? 'http://localhost:8000/freefiles/images/user_image.png'
-													: `http://localhost:8000/freefiles/images/${data.user.profileimage}`
-											}
-											sx={{ width: '10rem', height: '10rem' }}
-										/>
-										<Button
-											type="submit"
-											variant="contained"
-											sx={{ width: '10rem', marginTop: '10px' }}
-											size="small"
-											onClick={openModalHandler}>
-											Update Photo
-										</Button>
+										<Box
+											sx={{
+												backgroundColor: 'green',
+												display: 'flex',
+												justifyContent: 'center',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}>
+											<Avatar
+												alt="Profile Image"
+												src={
+													data.user.profileimage === 'defaultimage'
+														? 'http://localhost:8000/freefiles/images/user_image.png'
+														: `http://localhost:8000/freefiles/images/${data.user.profileimage}`
+												}
+												sx={{ width: '10rem', height: '10rem' }}
+											/>
+											<Button
+												type="submit"
+												variant="contained"
+												sx={{ width: '10rem', marginTop: '10px' }}
+												size="small"
+												onClick={openModalHandler}>
+												Update Photo
+											</Button>
+										</Box>
 									</Grid>
 									<Grid item xs={5} md={5}>
-										<Grid container spacing={3}>
-											<Grid item>
-												<Typography
-													color="secondary"
-													sx={{
-														fontSize: {
-															xs: '1rem',
-															sm: '1.3rem',
-															md: '1.5rem',
-															lg: '1.5rem',
-															xl: '1.5rem',
-														},
-													}}>
-													{'Blogs: '}
-												</Typography>
-												<Typography
-													color="secondary"
-													sx={{
-														fontSize: {
-															xs: '1rem',
-															sm: '1.3rem',
-															md: '1.5rem',
-															lg: '1.5rem',
-															xl: '1.5rem',
-														},
-													}}>
-													{'Friends: '}
-												</Typography>
+										<Box
+											sx={{
+												backgroundColor: 'green',
+												display: 'flex',
+												justifyContent: 'center',
+												flexDirection: 'column',
+												alignItems: 'center',
+											}}>
+											<Grid container spacing={3}>
+												<Grid item>
+													<Typography
+														color="secondary"
+														sx={{
+															fontSize: {
+																xs: '1rem',
+																sm: '1.3rem',
+																md: '1.5rem',
+																lg: '1.5rem',
+																xl: '1.5rem',
+															},
+														}}>
+														{'Blogs: '}
+													</Typography>
+													<Typography
+														color="secondary"
+														sx={{
+															fontSize: {
+																xs: '1rem',
+																sm: '1.3rem',
+																md: '1.5rem',
+																lg: '1.5rem',
+																xl: '1.5rem',
+															},
+														}}>
+														{'Friends: '}
+													</Typography>
+												</Grid>
+												<Grid item>
+													<Typography
+														sx={{
+															color: theme.palette.contrastText,
+															fontSize: {
+																xs: '1rem',
+																sm: '1.3rem',
+																md: '1.5rem',
+																lg: '1.5rem',
+																xl: '1.5rem',
+															},
+														}}>
+														{0}
+													</Typography>
+													<Typography
+														sx={{
+															color: theme.palette.contrastText,
+															fontSize: {
+																xs: '1rem',
+																sm: '1.3rem',
+																md: '1.5rem',
+																lg: '1.5rem',
+																xl: '1.5rem',
+															},
+														}}>
+														{0}
+													</Typography>
+												</Grid>
 											</Grid>
-											<Grid item>
-												<Typography
-													sx={{
-														color: theme.palette.contrastText,
-														fontSize: {
-															xs: '1rem',
-															sm: '1.3rem',
-															md: '1.5rem',
-															lg: '1.5rem',
-															xl: '1.5rem',
-														},
-													}}>
-													{0}
-												</Typography>
-												<Typography
-													sx={{
-														color: theme.palette.contrastText,
-														fontSize: {
-															xs: '1rem',
-															sm: '1.3rem',
-															md: '1.5rem',
-															lg: '1.5rem',
-															xl: '1.5rem',
-														},
-													}}>
-													{0}
-												</Typography>
-											</Grid>
-										</Grid>
+										</Box>
 									</Grid>
 								</Grid>
 							</Paper>
@@ -284,6 +302,7 @@ const UserProfileInfo = () => {
 									</Grid>
 								</Grid>
 							</Paper>
+
 							<Modal
 								open={openUpdateModal}
 								onClose={closeModalHandler}
