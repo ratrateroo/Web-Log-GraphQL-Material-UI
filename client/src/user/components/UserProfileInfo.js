@@ -137,7 +137,7 @@ const UserProfileInfo = () => {
 								sx={{
 									m: '1rem',
 									p: '1rem',
-									//backgroundColor: 'white',
+									//backgroundColor: 'greenyellow',
 									// color: theme.palette.primary.contrastText,
 								}}>
 								<Grid
@@ -152,16 +152,29 @@ const UserProfileInfo = () => {
 									justifyContent={{
 										xs: 'center',
 										sm: 'center',
-										md: 'space-even',
-										lg: 'space-even',
-										xl: 'space-even',
+										md: 'space-around',
+										lg: 'space-around',
+										xl: 'space-around',
 									}}
 									alignItems="center"
-									spacing={1}>
-									<Grid item xs={5} md={5}>
+									spacing={2}
+									sx={
+										{
+											//backgroundColor: 'indigo',
+										}
+									}>
+									<Grid
+										item
+										xs={5}
+										md={5}
+										sx={
+											{
+												//backgroundColor: 'goldenrod',
+											}
+										}>
 										<Box
 											sx={{
-												backgroundColor: 'green',
+												//backgroundColor: 'green',
 												display: 'flex',
 												justifyContent: 'center',
 												flexDirection: 'column',
@@ -174,29 +187,61 @@ const UserProfileInfo = () => {
 														? 'http://localhost:8000/freefiles/images/user_image.png'
 														: `http://localhost:8000/freefiles/images/${data.user.profileimage}`
 												}
-												sx={{ width: '10rem', height: '10rem' }}
+												sx={{
+													width: '10rem',
+													height: '10rem',
+												}}
 											/>
 											<Button
-												type="submit"
 												variant="contained"
-												sx={{ width: '10rem', marginTop: '10px' }}
+												sx={{
+													width: '10rem',
+													margin: '1rem',
+													'&:hover': {
+														color: theme.palette.contrastText,
+														backgroundColor: theme.palette.secondary.main,
+													},
+												}}
 												size="small"
 												onClick={openModalHandler}>
 												Update Photo
 											</Button>
 										</Box>
 									</Grid>
-									<Grid item xs={5} md={5}>
+									<Grid
+										item
+										xs={5}
+										md={5}
+										sx={{
+											//backgroundColor: 'blue',
+											height: '100%',
+											width: '100%',
+											padding: '0',
+											margin: '0',
+										}}>
 										<Box
 											sx={{
-												backgroundColor: 'green',
-												display: 'flex',
-												justifyContent: 'center',
-												flexDirection: 'column',
-												alignItems: 'center',
+												//backgroundColor: 'firebrick',
+												padding: '0',
+												margin: '0',
 											}}>
-											<Grid container spacing={3}>
-												<Grid item>
+											<Grid
+												container
+												spacing={2}
+												direction="row"
+												justifyContent="center"
+												alignItems="center"
+												sx={
+													{
+														//backgroundColor: 'lawngreen',
+													}
+												}>
+												<Grid
+													item
+													sx={{
+														//backgroundColor: 'goldenrod',
+														margin: '5px',
+													}}>
 													<Typography
 														color="secondary"
 														sx={{
@@ -207,6 +252,7 @@ const UserProfileInfo = () => {
 																lg: '1.5rem',
 																xl: '1.5rem',
 															},
+															margin: '5px',
 														}}>
 														{'Blogs: '}
 													</Typography>
@@ -220,11 +266,17 @@ const UserProfileInfo = () => {
 																lg: '1.5rem',
 																xl: '1.5rem',
 															},
+															margin: '5px',
 														}}>
 														{'Friends: '}
 													</Typography>
 												</Grid>
-												<Grid item>
+												<Grid
+													item
+													sx={{
+														//backgroundColor: 'khaki',
+														margin: '5px',
+													}}>
 													<Typography
 														sx={{
 															color: theme.palette.contrastText,
@@ -235,6 +287,7 @@ const UserProfileInfo = () => {
 																lg: '1.5rem',
 																xl: '1.5rem',
 															},
+															margin: '5px',
 														}}>
 														{0}
 													</Typography>
@@ -248,9 +301,49 @@ const UserProfileInfo = () => {
 																lg: '1.5rem',
 																xl: '1.5rem',
 															},
+															margin: '5px',
 														}}>
 														{0}
 													</Typography>
+												</Grid>
+												<Grid
+													item
+													sx={{
+														//backgroundColor: 'goldenrod',
+														margin: '5px',
+													}}>
+													<Box
+														sx={{
+															display: 'flex',
+															flexDirection: 'column',
+															justifyContent: 'center',
+															alignItems: 'center',
+														}}>
+														<Button
+															variant="contained"
+															//color="secondary"
+															sx={{
+																margin: '5px',
+																color: theme.palette.contrastText,
+																backgroundColor: theme.palette.secondary.main,
+															}}
+															size="small"
+															onClick={openModalHandler}>
+															Read Blogs
+														</Button>
+														<Button
+															variant="contained"
+															//color="secondary"
+															sx={{
+																margin: '5px',
+																color: theme.palette.contrastText,
+																backgroundColor: theme.palette.secondary.main,
+															}}
+															size="small"
+															onClick={openModalHandler}>
+															Add Friend
+														</Button>
+													</Box>
 												</Grid>
 											</Grid>
 										</Box>
@@ -333,8 +426,8 @@ const UserProfileInfo = () => {
 											</IconButton>
 										</Grid>
 										<Grid item>
-											<Typography id="modal-modal-title" variant="h6" component="h2">
-												Text in a modal
+											<Typography variant="h6" component="h6" sx={{ margin: '0.8rem' }}>
+												Upload your profile picture.
 											</Typography>
 										</Grid>
 										<Grid item>
@@ -345,7 +438,7 @@ const UserProfileInfo = () => {
 														? 'http://localhost:8000/freefiles/images/user_image.png'
 														: `http://localhost:8000/freefiles/images/${data.user.profileimage}`
 												}
-												sx={{ width: '10rem', height: '10rem' }}
+												sx={{ width: '10rem', height: '10rem', margin: '0.8rem' }}
 											/>
 										</Grid>
 										<Grid item>
@@ -356,7 +449,7 @@ const UserProfileInfo = () => {
 												size="small"
 												component="span"
 												onClick={fileSelectorHander}>
-												Update Photo
+												Upload
 											</Button>
 											{/* </label> */}
 
