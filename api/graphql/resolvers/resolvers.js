@@ -19,7 +19,7 @@ const resolvers = {
 			return userResolvers.logInUser(data);
 		},
 
-		uploadProfileImage: (_, { file }) => userResolvers.storeUpload(file),
+		uploadProfileImage: (_, { file }) => userResolvers.uploadProfileImage(file),
 	},
 };
 

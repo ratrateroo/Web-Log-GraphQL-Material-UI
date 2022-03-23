@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const storeUpload = require('../../util/storeUpload');
 const User = require('../../models/user');
 const storeFileSystem = require('../../util/storeFileSystem');
 const { transformUser } = require('./merge');
@@ -100,9 +101,23 @@ const userResolvers = {
 			console.log(error);
 		}
 	},
-	storeUpload: async (file) => {
-		const { createReadStream, filename, mimetype, encoding } = await file.file;
-		console.log(file.file);
+
+	uploadProfileImage: async (parent, { file }, context) => {
+		try {
+			const { filename, mimetype, encoding, stream } = await storeUpload(file, context);
+
+			await User.updateOne({ _id: context.userId }, { profileimage: filename })
+				.then((result) => {
+					console.log('Upload success');
+					return { filename, mimetype, encoding };
+				})
+				.catch((error) => console.log(error));
+		} catch (error) {
+			console.log(error);
+		}
+
+		//const { createReadStream, filename, mimetype, encoding } = await file.file;
+		//console.log(file.file);
 		// console.log(createReadStream);
 		// console.log(filename);
 		// console.log(mimetype);
@@ -122,6 +137,28 @@ const userResolvers = {
 			encoding: encoding,
 		});
 	},
+	// storeUpload: async (file) => {
+	// 	const { createReadStream, filename, mimetype, encoding } = await file.file;
+	// 	console.log(file.file);
+	// 	// console.log(createReadStream);
+	// 	// console.log(filename);
+	// 	// console.log(mimetype);
+	// 	// console.log(encoding);
+	// 	//check for the correct mimetype
+	// 	if (mimetype !== 'image/jpeg' && mimetype !== 'image/png' && mimetype !== 'image/jpg') {
+	// 		throw new Error(
+	// 			`File type ${mimetype} is invalid. Try uploading .jpg, jpeg, or .png file.`
+	// 		);
+	// 	}
+	// 	const stream = createReadStream();
+	// 	//console.log(stream);
+	// 	return storeFileSystem({
+	// 		stream: stream,
+	// 		mimetype: mimetype,
+	// 		filename: filename,
+	// 		encoding: encoding,
+	// 	});
+	// },
 	profileImage: async ({ id }) => {
 		const user = await User.findById(id);
 		//console.log(user._doc);

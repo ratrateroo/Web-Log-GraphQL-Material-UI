@@ -402,7 +402,7 @@ const UserProfileInfo = () => {
 								aria-labelledby="modal-modal-title"
 								aria-describedby="modal-modal-description"
 								sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-								<Box component={Paper} elevation={3} sx={{}}>
+								<Box component={Paper} elevation={3} sx={{ paddingBottom: '1rem' }}>
 									<Grid
 										container
 										direction="column"
@@ -445,7 +445,12 @@ const UserProfileInfo = () => {
 											{/* <label htmlFor="raised-button-file"> */}
 											<Button
 												variant="contained"
-												sx={{ width: '10rem', marginTop: '10px' }}
+												sx={{
+													width: '10rem',
+													marginTop: '10px',
+													color: theme.palette.contrastText,
+													backgroundColor: theme.palette.secondary.main,
+												}}
 												size="small"
 												component="span"
 												onClick={fileSelectorHander}>
