@@ -1,28 +1,45 @@
-import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 
 import { getUserData } from '../services/UserData/index';
 
-const authLink = setContext((_, { headers }) => {
-	//const userData = localStorage.getItem(LOGGED_IN_USER);
-	const userData = getUserData();
+// const authLink = setContext((_, { headers }) => {
+// 	//const userData = localStorage.getItem('userdata');
+// 	const userData = getUserData();
 
-	console.log('Client');
-	console.log(`Bearer ${userData.token}`);
-	if (!userData.token) {
-		return {
-			headers: {
-				...headers,
-			},
-		};
-	}
-	return {
+// 	console.log(userData);
+
+// 	console.log('Client');
+// 	console.log(`Bearer ${userData.token}`);
+// 	if (!userData.token) {
+// 		console.log('No Token');
+// 		return {
+// 			headers: {
+// 				...headers,
+// 			},
+// 		};
+// 	}
+// 	console.log('Token Found');
+// 	return {
+// 		headers: {
+// 			...headers,
+// 			authorization: userData ? `Bearer ${userData.token}` : '',
+// 		},
+// 	};
+// });
+
+const authMiddleware = new ApolloLink((operation, forward) => {
+	const userData = getUserData();
+	// add the authorization to the headers
+	operation.setContext(({ headers }) => ({
 		headers: {
 			...headers,
 			authorization: userData ? `Bearer ${userData.token}` : '',
 		},
-	};
+	}));
+
+	return forward(operation);
 });
 
 const uploadLink = createUploadLink({
@@ -39,7 +56,10 @@ const uploadLink = createUploadLink({
 // });
 
 export const client = new ApolloClient({
-	link: ApolloLink.from([authLink, uploadLink]),
+	// link: ApolloLink.from([uploadLink, authLink]),
+	//link: ApolloLink.from([authMiddleware, uploadLink]),
+	//link: authLink.concat(uploadLink),
+	link: authMiddleware.concat(uploadLink),
 	cache: new InMemoryCache(),
 });
 

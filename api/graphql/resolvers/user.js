@@ -109,7 +109,7 @@ const userResolvers = {
 		try {
 			const { filename, mimetype, encoding } = await storeUpload(args.file, args.context);
 
-			await User.updateOne({ _id: '622c7e8e949a05e24be5cf94' }, { profileimage: filename })
+			await User.updateOne({ _id: args.context.userId }, { profileimage: filename })
 				.then((result) => {
 					console.log(result);
 					console.log('Upload success');

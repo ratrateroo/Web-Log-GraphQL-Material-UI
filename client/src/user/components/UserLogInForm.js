@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../components/FormElements/Input/index';
 import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm/index';
-import { setUserData } from '../../services/UserData/index';
+import { setUserData, getUserData } from '../../services/UserData/index';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
 
 //import { setUserData } from '../util/userData';
@@ -36,6 +36,7 @@ const UserLogInForm = () => {
 
 	const [logInUser, { error, data }] = useMutation(LOGIN_MUTATION, {
 		onCompleted: ({ logInUser }) => {
+			console.log(logInUser);
 			setUserData({
 				token: logInUser.token,
 				userId: logInUser.userId,
@@ -44,6 +45,17 @@ const UserLogInForm = () => {
 			login(logInUser.token, logInUser.userId, logInUser.tokenExpiration);
 			localStorage.setItem('Token', JSON.stringify(logInUser.token));
 
+			localStorage.setItem(
+				'userdata',
+				JSON.stringify({
+					token: logInUser.token,
+					userId: logInUser.userId,
+					tokenExpiration: logInUser.tokenExpiration,
+				})
+			);
+
+			const userData = localStorage.getItem('userdata');
+			console.log(userData);
 			setFormData(
 				{
 					username: {
@@ -58,7 +70,7 @@ const UserLogInForm = () => {
 				},
 				false
 			);
-			navigate('/users', { replace: true });
+			//navigate('/users', { replace: true });
 		},
 	});
 
