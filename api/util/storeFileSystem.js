@@ -16,16 +16,22 @@ const storeFileSystem = async ({ stream, filename, mimetype, encoding }) => {
 
 	//new storedFileName
 	//get extension name and file name
+
 	const { ext, name } = path.parse(filename);
+	// const { ext, name } = filename;
+
+	// console.log('FILE NAME');
+	// console.log(ext, name);
 
 	//generate new storedFileName
 
-	const storedFileName = name + shortId + generateRandomString(12) + ext;
+	//const storedFileName = name + shortId + generateRandomString(12) + ext;
+	const storedFileName = name + shortId.generate() + generateRandomString(12) + ext;
 
 	//const newurl = new URL(path.join(__dirname, './public/images'));
 
 	//storedFileUrl - file upload directory + filename
-	const storedFileUrl = path.join(__dirname, `./public/images/${storedFileName}`);
+	const storedFileUrl = path.join(__dirname, `../public/images/${storedFileName}`);
 
 	//Store the file in the filesystem.
 	await new Promise((resolve, reject) => {

@@ -16,10 +16,16 @@ const resolvers = {
 			return userResolvers.signUpUser(data);
 		},
 		logInUser: (_, data) => {
+			console.log('login resolver reached');
+			console.log(data);
 			return userResolvers.logInUser(data);
 		},
 
-		uploadProfileImage: (_, { file }) => userResolvers.uploadProfileImage(file),
+		uploadProfileImage: (_, { file }, context) => {
+			console.log('upload resolver reached');
+			console.log(file);
+			return userResolvers.uploadProfileImage(file, context);
+		},
 	},
 };
 

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useRef } from 'react';
 
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation, useApolloClient } from '@apollo/client';
 import CloseIcon from '@mui/icons-material/Close';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -34,6 +34,16 @@ const USER_QUERY = gql`
 	}
 `;
 
+const SINGLE_UPLOAD_MUTATION = gql`
+	mutation uploadProfileImage($file: Upload!) {
+		uploadProfileImage(file: $file) {
+			filename
+			mimetype
+			encoding
+		}
+	}
+`;
+
 // const GET_DOG_PHOTO = gql`
 //   query Dog($breed: String!) {
 //     dog(breed: $breed) {
@@ -51,6 +61,9 @@ const UserProfileInfo = () => {
 	const { data, loading, error } = useQuery(USER_QUERY, {
 		variables: { id: uid },
 	});
+	const [uploadProfileImageMutation] = useMutation(SINGLE_UPLOAD_MUTATION);
+	const apolloClient = useApolloClient();
+
 	const theme = useTheme();
 	console.log(data);
 
@@ -64,6 +77,23 @@ const UserProfileInfo = () => {
 
 	const fileSelectorHander = () => {
 		inputFileEl.current.click();
+	};
+
+	const onUploadHandler = ({
+		target: {
+			validity,
+			files: [file],
+		},
+	}) => {
+		console.log(file);
+		validity.valid &&
+			uploadProfileImageMutation({
+				variables: { file: file },
+			})
+				.then(() => {
+					apolloClient.resetStore();
+				})
+				.catch((error) => console.log(error));
 	};
 
 	return (
@@ -465,7 +495,7 @@ const UserProfileInfo = () => {
 												sx={{ display: 'none' }}
 												multiple
 												id="raised-button-file"
-												onChange={() => console.log('changed')}
+												onChange={onUploadHandler}
 												onClick={() => console.log('clicked')}
 												onInput={() => console.log('input')}
 											/>

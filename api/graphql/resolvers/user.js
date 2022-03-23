@@ -1,9 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const storeUpload = require('../../util/storeUpload');
 const User = require('../../models/user');
-const storeFileSystem = require('../../util/storeFileSystem');
+const storeUpload = require('../../util/storeUpload');
 const { transformUser } = require('./merge');
 
 const userResolvers = {
@@ -102,12 +101,17 @@ const userResolvers = {
 		}
 	},
 
-	uploadProfileImage: async (parent, { file }, context) => {
+	uploadProfileImage: async (args) => {
+		console.log('user upload reached');
+		console.log(args);
+		console.log(args.file);
+		console.log(args.context);
 		try {
-			const { filename, mimetype, encoding, stream } = await storeUpload(file, context);
+			const { filename, mimetype, encoding } = await storeUpload(args.file, args.context);
 
-			await User.updateOne({ _id: context.userId }, { profileimage: filename })
+			await User.updateOne({ _id: '622c7e8e949a05e24be5cf94' }, { profileimage: filename })
 				.then((result) => {
+					console.log(result);
 					console.log('Upload success');
 					return { filename, mimetype, encoding };
 				})
@@ -115,27 +119,6 @@ const userResolvers = {
 		} catch (error) {
 			console.log(error);
 		}
-
-		//const { createReadStream, filename, mimetype, encoding } = await file.file;
-		//console.log(file.file);
-		// console.log(createReadStream);
-		// console.log(filename);
-		// console.log(mimetype);
-		// console.log(encoding);
-		//check for the correct mimetype
-		if (mimetype !== 'image/jpeg' && mimetype !== 'image/png' && mimetype !== 'image/jpg') {
-			throw new Error(
-				`File type ${mimetype} is invalid. Try uploading .jpg, jpeg, or .png file.`
-			);
-		}
-		const stream = createReadStream();
-		//console.log(stream);
-		return storeFileSystem({
-			stream: stream,
-			mimetype: mimetype,
-			filename: filename,
-			encoding: encoding,
-		});
 	},
 	// storeUpload: async (file) => {
 	// 	const { createReadStream, filename, mimetype, encoding } = await file.file;
