@@ -15,7 +15,7 @@ const apolloserver = new ApolloServer({
 	context: ({ req }) => {
 		console.log('checking headers');
 		if (req && req.headers.authorization) {
-			console.log(req.headers);
+			console.log(req.headers.authorization);
 		}
 		return {
 			...req,

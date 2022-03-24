@@ -1,11 +1,13 @@
 // const User = require('../models/user');
 const storeFileSystem = require('./storeFileSystem');
-const storeUpload = async (file) => {
+const storeUpload = async (file, context) => {
 	console.log('Context User ID');
+	console.log(file);
+	//console.log(file);
 	console.log('Store Upload Reached');
 
 	try {
-		const { createReadStream, filename, mimetype, encoding } = await file;
+		const { createReadStream, filename, mimetype, encoding } = await file.file;
 		console.log(createReadStream);
 		console.log(filename);
 		console.log(mimetype);

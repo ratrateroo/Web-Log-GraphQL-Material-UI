@@ -106,15 +106,14 @@ const userResolvers = {
 		}
 	},
 
-	uploadProfileImage: async (args) => {
+	uploadProfileImage: async (file, context) => {
 		console.log('user upload reached');
-		console.log(args);
-		console.log(args.file);
-		console.log(args.context);
-		try {
-			const { filename, mimetype, encoding } = await storeUpload(args.file, args.context);
 
-			await User.updateOne({ _id: args.context.userId }, { profileimage: filename })
+		console.log(context.userId);
+		try {
+			const { filename, mimetype, encoding } = await storeUpload(file, context);
+
+			await User.updateOne({ _id: context.userId }, { profileimage: filename })
 				.then((result) => {
 					console.log(result);
 					console.log('Upload success');

@@ -19,13 +19,14 @@ const resolvers = {
 		},
 		logInUser: (_, data) => {
 			console.log('login resolver reached');
-			console.log(data);
+
 			return userResolvers.logInUser(data);
 		},
 
 		uploadProfileImage: (_, { file }, context) => {
 			console.log('upload resolver reached');
-			console.log(file);
+			console.log('showing context');
+			console.log(context.userId);
 			return userResolvers.uploadProfileImage(file, context);
 		},
 	},
