@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import User from './User';
 
 const USERS_QUERY = gql`
-	{
+	query getUsers {
 		users {
 			_id
 			username
@@ -65,7 +65,8 @@ const UsersList = () => {
 									variant="h6"
 									component="h6"
 									color={theme.palette.error.main}>
-									Some error occured...
+									{/* Some error occured...  */}
+									{error.message}
 								</Typography>
 							</Grid>
 						)}

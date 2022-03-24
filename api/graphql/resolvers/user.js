@@ -1,3 +1,4 @@
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -90,9 +91,13 @@ const userResolvers = {
 				throw new Error('Password is incorrect.');
 			}
 
-			const token = jwt.sign({ userId: user.id, email: user.email }, 'secretkeyforhashing', {
-				expiresIn: '1h',
-			});
+			const token = jwt.sign(
+				{ userId: user.id, email: user.email },
+				process.env.TOKEN_SECRET_KEY,
+				{
+					expiresIn: '1h',
+				}
+			);
 			console.log(token);
 
 			return { userId: user.id, token: token, tokenExpiration: 1 };
