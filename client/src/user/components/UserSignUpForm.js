@@ -61,8 +61,21 @@ const UserSignUpForm = () => {
 				userId: signUpUser.userId,
 				tokenExpiration: signUpUser.tokenExpiration,
 			});
+			console.log('User data stored in memory.');
+
 			login(signUpUser.token, signUpUser.userId, signUpUser.tokenExpiration);
-			localStorage.setItem('Token', JSON.stringify(signUpUser.token));
+			console.log('User data stored in context.');
+
+			localStorage.setItem(
+				'userdata',
+				JSON.stringify({
+					token: signUpUser.token,
+					userId: signUpUser.userId,
+					tokenExpiration: signUpUser.tokenExpiration,
+				})
+			);
+			console.log('User data stored in local storage.');
+
 			setFormData(
 				{
 					username: {

@@ -195,17 +195,11 @@ const userResolvers = {
 		});
 		const result = await user.save();
 
-		//return { ...result._doc, password: null, _id: result.id };
-
-		const token = jwt.sign({ userId: result.id, email: user.email }, 'secretkeyforhashing', {
+		const token = jwt.sign({ userId: user.id, email: user.email }, process.env.TOKEN_SECRET_KEY, {
 			expiresIn: '1h',
 		});
 
-		return {
-			userId: result._id,
-			token: token,
-			tokenExpiration: 1,
-		};
+		return { userId: user.id, token: token, tokenExpiration: 1 };
 	},
 };
 module.exports = userResolvers;
