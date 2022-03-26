@@ -53,7 +53,8 @@ const authLink = setContext(async (_, { headers }) => {
 
 	console.log('Client');
 	console.log(`Bearer ${userDataMemory.token}`);
-	if (!userDataMemory.token) {
+	const localStorage = JSON.parse(userDataLocalStorage);
+	if (!userDataMemory.token || !localStorage.token) {
 		console.log('No Token');
 		return {
 			headers: {
@@ -65,7 +66,10 @@ const authLink = setContext(async (_, { headers }) => {
 	return {
 		headers: {
 			...headers,
-			authorization: userDataMemory ? `Bearer ${userDataMemory.token}` : '',
+			authorization:
+				userDataMemory || localStorage
+					? `Bearer ${userDataMemory.token || localStorage.token}`
+					: '',
 		},
 	};
 });
