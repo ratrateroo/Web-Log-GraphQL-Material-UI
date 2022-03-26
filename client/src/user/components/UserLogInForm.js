@@ -70,7 +70,7 @@ const UserLogInForm = () => {
 				},
 				false
 			);
-			//navigate('/users', { replace: true });
+			navigate('/users', { replace: true });
 		},
 	});
 
