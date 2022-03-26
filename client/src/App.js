@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -13,6 +13,18 @@ import UserSignUp from './user/pages/UserSignUp';
 const App = () => {
 	const colorMode = useContext(ColorModeContext);
 
+	const onUnloadHandler = () => {
+		console.log('Page Refreshing.');
+		window.localStorage.removeItem('userdata');
+	};
+
+	useEffect(() => {
+		window.addEventListener('unload', onUnloadHandler, true);
+		return () => {
+			window.removeEventListener('unload', onUnloadHandler, true);
+		};
+	}, []);
+
 	return (
 		<Fragment>
 			<Routes>
@@ -23,9 +35,9 @@ const App = () => {
 					<Route
 						path="/users"
 						element={
-							// <RequireAuth>
-							<Users />
-							// </RequireAuth>
+							<RequireAuth>
+								<Users />
+							</RequireAuth>
 						}
 					/>
 				</Route>

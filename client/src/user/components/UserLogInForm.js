@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../components/FormElements/Input/index';
 import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm/index';
-import { setUserData, getUserData } from '../../services/UserData/index';
+import { setUserData } from '../../services/UserData/index';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
 
 //import { setUserData } from '../util/userData';
@@ -42,8 +42,11 @@ const UserLogInForm = () => {
 				userId: logInUser.userId,
 				tokenExpiration: logInUser.tokenExpiration,
 			});
+
+			console.log('User data stored in memory.');
 			login(logInUser.token, logInUser.userId, logInUser.tokenExpiration);
-			localStorage.setItem('Token', JSON.stringify(logInUser.token));
+			console.log('User data stored in context.');
+			//localStorage.setItem('Token', JSON.stringify(logInUser.token));
 
 			localStorage.setItem(
 				'userdata',
@@ -53,9 +56,8 @@ const UserLogInForm = () => {
 					tokenExpiration: logInUser.tokenExpiration,
 				})
 			);
+			console.log('User data stored in local storage.');
 
-			const userData = localStorage.getItem('userdata');
-			console.log(userData);
 			setFormData(
 				{
 					username: {

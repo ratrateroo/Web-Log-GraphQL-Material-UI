@@ -45,7 +45,8 @@ const UserNavLinks = () => {
 
 	const logOutHandler = () => {
 		logout();
-		window.localStorage.removeItem('Token');
+
+		window.localStorage.removeItem('userdata');
 		navigate('/', { replace: true });
 	};
 

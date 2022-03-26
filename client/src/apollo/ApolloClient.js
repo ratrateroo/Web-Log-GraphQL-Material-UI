@@ -37,13 +37,23 @@ const logTimeLink = new ApolloLink((operation, forward) => {
 //=========================AUTH LINK===========================
 const authLink = setContext(async (_, { headers }) => {
 	//const userData = localStorage.getItem('userdata');
-	const userData = await getUserData();
+	const userDataMemory = await getUserData();
+	console.log('User data retrieved from memory.');
+	const userDataLocalStorage = localStorage.getItem('userdata');
+	console.log('User data retrieved from local storage.');
 
-	console.log(userData);
+	// if (JSON.stringify(userDataMemory) === userDataLocalStorage) {
+	// 	console.log('String Data Matched.');
+	// }
+	// const object1 = userDataMemory;
+	// const object2 = JSON.parse(userDataLocalStorage);
+	// if (Object.entries(object1).toString() === Object.entries(object2).toString()) {
+	// 	console.log('Object Data Matched.');
+	// }
 
 	console.log('Client');
-	console.log(`Bearer ${userData.token}`);
-	if (!userData.token) {
+	console.log(`Bearer ${userDataMemory.token}`);
+	if (!userDataMemory.token) {
 		console.log('No Token');
 		return {
 			headers: {
@@ -55,7 +65,7 @@ const authLink = setContext(async (_, { headers }) => {
 	return {
 		headers: {
 			...headers,
-			authorization: userData ? `Bearer ${userData.token}` : '',
+			authorization: userDataMemory ? `Bearer ${userDataMemory.token}` : '',
 		},
 	};
 });
@@ -81,14 +91,6 @@ const uploadLink = createUploadLink({
 });
 //=========================UPLOAD LINK===========================
 
-//const httpLink = new HttpLink({ uri: `http://localhost:8000/graphql` });
-
-//new client
-// export const client = new ApolloClient({
-// 	link: authLink.concat(httpLink),
-// 	cache: new InMemoryCache(),
-// });
-
 export const client = new ApolloClient({
 	link: ApolloLink.from([errorLink, timeStartLink, logTimeLink, authLink, uploadLink]),
 	//link: ApolloLink.from([authMiddleware, uploadLink]),
@@ -97,8 +99,3 @@ export const client = new ApolloClient({
 	//link: from([errorLink, authLink, uploadLink]),
 	cache: new InMemoryCache(),
 });
-
-// export const client = new ApolloClient({
-// 	link: link,
-// 	cache: new InMemoryCache(),
-// });
