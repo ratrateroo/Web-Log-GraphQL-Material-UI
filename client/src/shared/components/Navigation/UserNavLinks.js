@@ -44,9 +44,11 @@ const UserNavLinks = () => {
 	const theme = useTheme();
 
 	const logOutHandler = () => {
-		logout();
-
 		window.localStorage.removeItem('userdata');
+		console.log('User data removed from local storage.');
+
+		logout();
+		console.log('User data removed from context.');
 		navigate('/', { replace: true });
 	};
 
