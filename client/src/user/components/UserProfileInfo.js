@@ -44,15 +44,6 @@ const SINGLE_UPLOAD_MUTATION = gql`
 	}
 `;
 
-// const GET_DOG_PHOTO = gql`
-//   query Dog($breed: String!) {
-//     dog(breed: $breed) {
-//       id
-//       displayImage
-//     }
-//   }
-// `;
-
 const UserProfileInfo = () => {
 	const [openUpdateModal, setOpenUpdateModal] = useState(false);
 	const inputFileEl = useRef(null);
