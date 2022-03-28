@@ -170,10 +170,6 @@ const userResolvers = {
 			})
 			.catch((err) => console.log(err));
 
-		// const existingUser = await User.findOne({
-		// 	username: args.userInput.username,
-		// 	email: args.userInput.email,
-		// });
 		if (status === 'username') {
 			throw new Error('Username exists already.');
 		}
