@@ -31,6 +31,8 @@ const typeDefs = gql`
 		_id: ID!
 		title: String!
 		content: String!
+		likes: Number!
+		comments: [String]
 		createdAt: String!
 		updatedAt: String!
 
