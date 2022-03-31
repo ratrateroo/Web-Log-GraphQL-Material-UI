@@ -12,6 +12,10 @@ const blogSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		likes: {
+			type: Number,
+			required: true,
+		},
 
 		author: {
 			type: Schema.Types.ObjectId,
