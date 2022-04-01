@@ -3,6 +3,7 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import RequireAuth from './auth/RequireAuth';
+import CreateBlog from './blog/pages/CreateBlog';
 import { ColorModeContext } from './context/ColorModeContext';
 import Layout from './shared/components/Layout/Layout';
 import UserLogIn from './user/pages/UserLogIn';
@@ -30,6 +31,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Layout colorMode={colorMode} />}>
 					<Route path="/profile/:uid" element={<UserProfile />} />
+					<Route path="/createblog" element={<CreateBlog />} />
 					<Route path="/signup" element={<UserSignUp />} />
 					<Route path="/login" element={<UserLogIn />} />
 					<Route
