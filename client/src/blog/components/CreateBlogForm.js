@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CreateBlogForm = () => {
-	return <h1>Crate Blog</h1>;
+	return <h1>Create Blog</h1>;
 };
 
 export default CreateBlogForm;
