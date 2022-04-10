@@ -1,4 +1,5 @@
 const userResolvers = require('./user');
+const blogResolvers = require('./blog');
 
 const resolvers = {
 	Query: {
@@ -28,6 +29,9 @@ const resolvers = {
 			console.log('showing context');
 			console.log(context.userId);
 			return userResolvers.uploadProfileImage(file, context);
+		},
+		createBlog: (_, data) => {
+			return blogResolvers.createBlog(data);
 		},
 	},
 };
