@@ -22,28 +22,14 @@ import {
 	VALIDATOR_EMAIL,
 } from '../../services/validators/index';
 
-const SIGNUP_MUTATION = gql`
-	mutation SignUpMutation(
-		$username: String!
-		$email: String!
-		$password: String
-		$firstname: String!
-		$middlename: String!
-		$lastname: String!
-	) {
-		signUpUser(
-			userInput: {
-				username: $username
-				email: $email
-				password: $password
-				firstname: $firstname
-				middlename: $middlename
-				lastname: $lastname
-			}
-		) {
-			userId
-			token
-			tokenExpiration
+const CREATEBLOG_MUTATION = gql`
+	mutation CreateBlogMutation($title: String!, $content: String!) {
+		createBlog(blogInput: { title: $title, content: $content }) {
+			blogId
+			title
+			content
+			likes
+			commments
 		}
 	}
 `;
@@ -54,57 +40,10 @@ const CreateBlogForm = () => {
 	let location = useLocation();
 	let from = location.state?.from?.pathname || '/';
 
-	const [signUpUser, { error, data }] = useMutation(SIGNUP_MUTATION, {
-		onCompleted: ({ signUpUser }) => {
-			setUserData({
-				token: signUpUser.token,
-				userId: signUpUser.userId,
-				tokenExpiration: signUpUser.tokenExpiration,
-			});
-			console.log('User data stored in memory.');
+	const [signUpUser, { error, data }] = useMutation(CREATEBLOG_MUTATION, {
+		onCompleted: ({ createBlog }) => {
+			console.log(createBlog);
 
-			login(signUpUser.token, signUpUser.userId, signUpUser.tokenExpiration);
-			console.log('User data stored in context.');
-
-			localStorage.setItem(
-				'userdata',
-				JSON.stringify({
-					token: signUpUser.token,
-					userId: signUpUser.userId,
-					tokenExpiration: signUpUser.tokenExpiration,
-				})
-			);
-			console.log('User data stored in local storage.');
-
-			setFormData(
-				{
-					username: {
-						value: '',
-						isValid: true,
-					},
-					email: {
-						value: '',
-						isValid: true,
-					},
-					password: {
-						value: '',
-						isValid: true,
-					},
-					firstname: {
-						value: '',
-						isValid: true,
-					},
-					middlename: {
-						value: '',
-						isValid: true,
-					},
-					lastname: {
-						value: '',
-						isValid: true,
-					},
-				},
-				false
-			);
 			navigate(from, { replace: true });
 		},
 	});
@@ -112,27 +51,11 @@ const CreateBlogForm = () => {
 	//useForm Hook
 	const [formState, inputHandler, setFormData] = useForm(
 		{
-			username: {
+			title: {
 				value: '',
 				isValid: true,
 			},
-			email: {
-				value: '',
-				isValid: true,
-			},
-			password: {
-				value: '',
-				isValid: true,
-			},
-			firstname: {
-				value: '',
-				isValid: true,
-			},
-			middlename: {
-				value: '',
-				isValid: true,
-			},
-			lastname: {
+			content: {
 				value: '',
 				isValid: true,
 			},
@@ -140,18 +63,14 @@ const CreateBlogForm = () => {
 		false
 	);
 
-	const signUpUserHandler = (e) => {
+	const createBlogHandler = (e) => {
 		e.preventDefault();
 
 		try {
 			signUpUser({
 				variables: {
-					username: formState.inputs.username.value,
-					email: formState.inputs.email.value,
-					password: formState.inputs.password.value,
-					firstname: formState.inputs.firstname.value,
-					middlename: formState.inputs.middlename.value,
-					lastname: formState.inputs.lastname.value,
+					title: formState.inputs.title.value,
+					content: formState.inputs.content.value,
 				},
 			}).catch((err) => {
 				console.log(err);
@@ -180,7 +99,7 @@ const CreateBlogForm = () => {
 						<LockOutlinedIcon />
 					</Avatar>
 					<Typography component="h4" variant="h4">
-						Sign Up
+						Create Blog
 					</Typography>
 					{data ? (
 						<Typography component="h6" variant="h6" color="secondary">
@@ -197,7 +116,7 @@ const CreateBlogForm = () => {
 						</Typography>
 					)}
 
-					<Box component="form" onSubmit={signUpUserHandler} sx={{ mt: 5 }}>
+					<Box component="form" onSubmit={createBlogHandler} sx={{ mt: 5 }}>
 						<Box sx={{ flexGrow: 1 }}>
 							<Grid container spacing={5}>
 								<Grid item xs={12}>
@@ -206,9 +125,9 @@ const CreateBlogForm = () => {
 									</Typography>
 									<Input
 										type="text"
-										id="username"
-										label="Username"
-										placeholder="Enter your username here!"
+										id="title"
+										label="Title"
+										placeholder="Enter the title here!"
 										fullWidth
 										margin="normal"
 										size="small"
@@ -218,9 +137,9 @@ const CreateBlogForm = () => {
 
 									<Input
 										type="text"
-										id="email"
-										label="Email"
-										placeholder="Enter your email here!"
+										id="content"
+										label="Content"
+										placeholder="Enter the content here!"
 										fullWidth
 										margin="normal"
 										size="small"
@@ -253,7 +172,7 @@ const CreateBlogForm = () => {
 												sx={{}}
 												size="large"
 												disabled={!formState.isValid}
-												onClick={signUpUserHandler}>
+												onClick={createBlogHandler}>
 												Create Blog
 											</Button>
 										</span>
