@@ -145,6 +145,7 @@ const CreateBlogForm = () => {
 										size="small"
 										onInput={inputHandler}
 										validators={[VALIDATOR_EMAIL()]}
+										multiline
 									/>
 								</Grid>
 							</Grid>
