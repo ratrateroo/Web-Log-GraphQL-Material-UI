@@ -99,26 +99,18 @@ const CreateBlogForm = () => {
 					</Typography>
 					{data ? (
 						<Typography component="h6" variant="h6" color="secondary">
-							{data ? 'Sign up successful!' : '\u00A0'}
+							{data ? 'Blog creation successful!' : '\u00A0'}
 						</Typography>
 					) : (
 						<Typography component="h6" variant="h6" color="secondary">
-							{error
-								? error.message === 'Username exists already.' ||
-								  error.message === 'Email already taken.'
-									? error.message
-									: 'Something went wrong, please try again.'
-								: '\u00A0'}
+							{error ? 'Something went wrong, please try again.' : '\u00A0'}
 						</Typography>
 					)}
 
 					<Box component="form" onSubmit={createBlogHandler} sx={{ mt: 5 }}>
 						<Box sx={{ flexGrow: 1 }}>
-							<Grid container spacing={5}>
-								<Grid item xs={12}>
-									<Typography component="h6" variant="h6">
-										Create Blog
-									</Typography>
+							<Grid container>
+								<Grid item>
 									<Input
 										type="text"
 										id="title"
@@ -166,7 +158,7 @@ const CreateBlogForm = () => {
 											<Button
 												type="submit"
 												variant="contained"
-												sx={{}}
+												sx={{ marginBottom: '1rem' }}
 												size="large"
 												disabled={!formState.isValid}
 												onClick={createBlogHandler}>
