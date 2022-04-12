@@ -28,7 +28,7 @@ const typeDefs = gql`
 	}
 
 	type Blog {
-		_id: ID!
+		blogId: ID!
 		title: String!
 		content: String!
 		likes: Int!

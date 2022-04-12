@@ -16,11 +16,7 @@ import Input from '../../components/FormElements/Input/index';
 import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm/index';
 import { setUserData } from '../../services/UserData/index';
-import {
-	VALIDATOR_REQUIRE,
-	VALIDATOR_MINLENGTH,
-	VALIDATOR_EMAIL,
-} from '../../services/validators/index';
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
 
 const CREATEBLOG_MUTATION = gql`
 	mutation CreateBlogMutation($title: String!, $content: String!) {
@@ -29,7 +25,7 @@ const CREATEBLOG_MUTATION = gql`
 			title
 			content
 			likes
-			commments
+			comments
 		}
 	}
 `;
@@ -144,7 +140,7 @@ const CreateBlogForm = () => {
 										margin="normal"
 										size="small"
 										onInput={inputHandler}
-										validators={[VALIDATOR_EMAIL()]}
+										validators={[VALIDATOR_MINLENGTH(100)]}
 										multiline
 									/>
 								</Grid>

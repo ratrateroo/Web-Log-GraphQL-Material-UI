@@ -13,8 +13,8 @@ const blogResolvers = {
 		let status;
 
 		const blog = new Blog({
-			title: args.blogInput.username,
-			content: args.blogInput.email,
+			title: args.blogInput.title,
+			content: args.blogInput.content,
 			likes: 0,
 			comments: [''],
 		});
