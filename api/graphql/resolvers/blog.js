@@ -29,4 +29,4 @@ const blogResolvers = {
 		};
 	},
 };
-module.exports = userResolvers;
+module.exports = blogResolvers;
