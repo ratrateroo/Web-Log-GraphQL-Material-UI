@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 
 import { gql, useMutation } from '@apollo/client';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,9 +13,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import Input from '../../components/FormElements/Input/index';
-import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm/index';
-import { setUserData } from '../../services/UserData/index';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../services/validators/index';
 
 const CREATEBLOG_MUTATION = gql`
@@ -31,7 +29,6 @@ const CREATEBLOG_MUTATION = gql`
 `;
 
 const CreateBlogForm = () => {
-	const { login } = useContext(AuthContext);
 	let navigate = useNavigate();
 	let location = useLocation();
 	let from = location.state?.from?.pathname || '/';
@@ -45,7 +42,7 @@ const CreateBlogForm = () => {
 	});
 
 	//useForm Hook
-	const [formState, inputHandler, setFormData] = useForm(
+	const [formState, inputHandler] = useForm(
 		{
 			title: {
 				value: '',
@@ -107,10 +104,10 @@ const CreateBlogForm = () => {
 						</Typography>
 					)}
 
-					<Box component="form" onSubmit={createBlogHandler} sx={{ mt: 5 }}>
+					<Box component="form" onSubmit={createBlogHandler} sx={{ mt: 5, width: '100%' }}>
 						<Box sx={{ flexGrow: 1 }}>
 							<Grid container>
-								<Grid item>
+								<Grid item sx={{ width: '100%' }}>
 									<Input
 										type="text"
 										id="title"
