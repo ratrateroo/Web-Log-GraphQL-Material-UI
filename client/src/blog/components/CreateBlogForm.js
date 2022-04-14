@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 
 import { gql, useMutation } from '@apollo/client';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -83,15 +81,14 @@ const CreateBlogForm = () => {
 				<CssBaseline />
 				<Box
 					sx={{
-						marginTop: 5,
+						marginTop: '2rem',
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: 'center',
+						justifyContent: 'start',
+						alignItems: 'start',
+						marginBottom: '1rem',
 					}}>
-					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-						<LockOutlinedIcon />
-					</Avatar>
-					<Typography component="h4" variant="h4">
+					<Typography component="h5" variant="h5">
 						Create Blog
 					</Typography>
 					{data ? (
@@ -104,7 +101,10 @@ const CreateBlogForm = () => {
 						</Typography>
 					)}
 
-					<Box component="form" onSubmit={createBlogHandler} sx={{ mt: 5, width: '100%' }}>
+					<Box
+						component="form"
+						onSubmit={createBlogHandler}
+						sx={{ marginTop: '1rem', width: '100%' }}>
 						<Box sx={{ flexGrow: 1 }}>
 							<Grid container>
 								<Grid item sx={{ width: '100%' }}>
@@ -138,7 +138,7 @@ const CreateBlogForm = () => {
 								container
 								spacing={0}
 								direction="column"
-								alignItems="center"
+								alignItems="end"
 								justifyContent="center"
 								sx={{
 									marginTop: '2rem',
@@ -159,7 +159,7 @@ const CreateBlogForm = () => {
 												size="large"
 												disabled={!formState.isValid}
 												onClick={createBlogHandler}>
-												Create Blog
+												save
 											</Button>
 										</span>
 									</Tooltip>
