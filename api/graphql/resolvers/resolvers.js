@@ -30,8 +30,8 @@ const resolvers = {
 			console.log(context.userId);
 			return userResolvers.uploadProfileImage(file, context);
 		},
-		createBlog: (_, data) => {
-			return blogResolvers.createBlog(data);
+		createBlog: (_, data, context) => {
+			return blogResolvers.createBlog(data, context);
 		},
 	},
 };

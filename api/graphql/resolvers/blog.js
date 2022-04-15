@@ -8,7 +8,7 @@ const storeUpload = require('../../util/storeUpload');
 const { transformUser } = require('./merge');
 
 const blogResolvers = {
-	createBlog: async (args) => {
+	createBlog: async (args, context) => {
 		console.log(args);
 		let status;
 
