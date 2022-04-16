@@ -31,7 +31,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Layout colorMode={colorMode} />}>
 					<Route path="/profile/:uid" element={<UserProfile />} />
-					<Route path="/createblog" element={<CreateBlog />} />
+
 					<Route path="/signup" element={<UserSignUp />} />
 					<Route path="/login" element={<UserLogIn />} />
 					<Route
@@ -39,6 +39,14 @@ const App = () => {
 						element={
 							<RequireAuth>
 								<Users />
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/createblog"
+						element={
+							<RequireAuth>
+								<CreateBlog />
 							</RequireAuth>
 						}
 					/>
