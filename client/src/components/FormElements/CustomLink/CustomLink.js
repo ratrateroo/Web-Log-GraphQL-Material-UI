@@ -1,16 +1,6 @@
-import React, { Fragment, useContext } from 'react';
-
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
-import {
-	Link as RouterLink,
-	useMatch,
-	useResolvedPath,
-	useNavigate,
-	useLocation,
-} from 'react-router-dom';
-
-import AuthContext from '../../../context/AuthContext';
+import { Link as RouterLink, useMatch, useResolvedPath } from 'react-router-dom';
 
 const CustomLink = ({ children, to, onClick }) => {
 	let resolved = useResolvedPath(to);
@@ -32,3 +22,5 @@ const CustomLink = ({ children, to, onClick }) => {
 		</div>
 	);
 };
+
+export default CustomLink;
