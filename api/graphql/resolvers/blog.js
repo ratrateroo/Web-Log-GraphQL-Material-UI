@@ -17,6 +17,7 @@ const blogResolvers = {
 			content: args.blogInput.content,
 			likes: 0,
 			comments: [''],
+			author: context.userId,
 		});
 		const result = await blog.save();
 
