@@ -1,5 +1,20 @@
+const DataLoader = require('dataloader');
+
 const Blog = require('../../models/blog');
 const User = require('../../models/user');
+
+const blogLoader = new DataLoader((blogIds) => {
+	return blogs(blogIds);
+});
+
+const blog = async (blogId) => {
+	try {
+		const blog = await blogLoader.load(blogId.toString());
+		return blog;
+	} catch (err) {
+		throw err;
+	}
+};
 
 const blogs = async (blogIds) => {
 	const blogs = await Blog.find({ _id: { $in: blogIds } });
