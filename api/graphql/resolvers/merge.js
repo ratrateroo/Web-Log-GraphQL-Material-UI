@@ -7,6 +7,10 @@ const blogLoader = new DataLoader((blogIds) => {
 	return blogs(blogIds);
 });
 
+const userLoader = new DataLoader((userIds) => {
+	return User.find({ _id: { $in: userIds } });
+});
+
 const blog = async (blogId) => {
 	try {
 		const blog = await blogLoader.load(blogId.toString());
