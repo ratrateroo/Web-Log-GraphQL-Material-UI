@@ -21,6 +21,11 @@ const USERS_QUERY = gql`
 			middlename
 			lastname
 			profileimage
+			createdBlogs {
+				title
+			}
+			createdAt
+			updatedAt
 		}
 	}
 `;
