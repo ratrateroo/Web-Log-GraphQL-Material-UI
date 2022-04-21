@@ -57,29 +57,29 @@ const transformBlog = (blog) => {
 	};
 };
 
-const transformUser = (user) => {
-	console.log('array', user.createdBlogs);
-	console.log('length', user.createdBlogs.length);
-	//const blogCount = blogs.bind(this, user.author);
-	return {
-		...user._doc,
-		_id: user._doc._id.toString(),
-		username: user.username,
-		email: user.email,
-		password: user.password,
-		firstname: user.firstname,
-		middlename: user.middlename,
-		lastname: user.lastname,
-		profileimage: user.profileimage,
-		createdAt: user.createdAt,
-		updatedAt: user.updatedAt,
+// const transformUser = (user) => {
+// 	console.log('array', user.createdBlogs);
+// 	console.log('length', user.createdBlogs.length);
+// 	//const blogCount = blogs.bind(this, user.author);
+// 	return {
+// 		...user._doc,
+// 		_id: user._doc._id.toString(),
+// 		username: user.username,
+// 		email: user.email,
+// 		password: user.password,
+// 		firstname: user.firstname,
+// 		middlename: user.middlename,
+// 		lastname: user.lastname,
+// 		profileimage: user.profileimage,
+// 		createdAt: user.createdAt,
+// 		updatedAt: user.updatedAt,
 
-		//createdBlogs: user.createdBlogs.length,
-		//createdBlogs: blogs.bind(this, user.author),
-	};
-};
+// 		//createdBlogs: user.createdBlogs.length,
+// 		//createdBlogs: blogs.bind(this, user.author),
+// 	};
+// };
 
 exports.transformBlog = transformBlog;
-exports.transformUser = transformUser;
+//exports.transformUser = transformUser;
 exports.user = user;
 exports.blogs = blogs;
