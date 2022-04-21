@@ -28,14 +28,25 @@ const blogs = async (blogIds) => {
 };
 
 const user = async (userId) => {
-	const user = await User.findById(userId);
+	//const user = await User.findById(userId);
 	//const blogCount = blogs.bind(this, user._doc.createdBlogs);
 	// return {
 	// 	...user._doc,
 	// 	_id: user.id,
 	// 	createdBlogs: blogCount.length,
 	// };
-	return transformUser(user);
+	//return transformUser(user);
+
+	try {
+		const user = await userLoader.load(userId.toString());
+		return {
+			...user._doc,
+			_id: user.id,
+			createdBlogs: () => blogLoader.loadMany(user._doc.createdBlogs),
+		};
+	} catch (err) {
+		throw err;
+	}
 };
 
 const transformBlog = (blog) => {
