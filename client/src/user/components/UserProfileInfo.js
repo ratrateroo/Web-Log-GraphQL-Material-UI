@@ -28,6 +28,10 @@ const USER_QUERY = gql`
 			middlename
 			lastname
 			profileimage
+			createdBlogs {
+				title
+				content
+			}
 			createdAt
 			updatedAt
 		}
@@ -310,7 +314,7 @@ const UserProfileInfo = () => {
 															},
 															margin: '5px',
 														}}>
-														{0}
+														{data.user.createdBlogs.length}
 													</Typography>
 													<Typography
 														sx={{

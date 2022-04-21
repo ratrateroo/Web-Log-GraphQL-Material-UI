@@ -5,13 +5,17 @@ const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 const storeUpload = require('../../util/storeUpload');
 const { transformUser } = require('./merge');
+const { user } = require('./merge');
 
 const userResolvers = {
 	user: async ({ id }) => {
-		const user = await User.findById(id);
-		console.log(user._doc);
+		// const user = await User.findById(id);
+		// console.log(user._doc);
 
-		return transformUser(user);
+		// return transformUser(user);
+		console.log('user resolver');
+		console.log(id);
+		return await user(id);
 	},
 
 	check: async () => {
