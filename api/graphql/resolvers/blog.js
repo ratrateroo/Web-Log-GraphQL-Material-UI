@@ -1,17 +1,11 @@
 require('dotenv').config();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 const Blog = require('../../models/blog');
-const storeUpload = require('../../util/storeUpload');
-const { transformUser } = require('./merge');
+const { transformBlog } = require('./merge');
 
 const blogResolvers = {
 	createBlog: async (args, context) => {
-		console.log(args);
-		let status;
-
 		const blog = new Blog({
 			title: args.blogInput.title,
 			content: args.blogInput.content,
@@ -19,7 +13,19 @@ const blogResolvers = {
 			comments: [''],
 			author: context.userId,
 		});
-		const result = await blog.save();
+
+		let createdBlog;
+
+		try {
+			const result = await blog.save();
+			createdBlog = transformBlog(result);
+			const creator = await User.findById(context.userId);
+			if (!creator) {
+				throw new Error('User not found.');
+			}
+		} catch (error) {
+			console.log(error);
+		}
 
 		return {
 			blogId: blog.id,
