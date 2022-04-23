@@ -25,7 +25,8 @@ const userResolvers = {
 	users: async () => {
 		const users = await User.find();
 		return users.map((user) => {
-			return { ...user._doc, _id: user._doc._id.toString() };
+			//return { ...user._doc, _id: user._doc._id.toString() };
+			return transformUser(user);
 		});
 	},
 

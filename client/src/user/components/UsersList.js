@@ -23,6 +23,7 @@ const USERS_QUERY = gql`
 			profileimage
 			createdBlogs {
 				title
+				content
 			}
 			createdAt
 			updatedAt

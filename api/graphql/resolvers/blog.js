@@ -18,7 +18,7 @@ const blogResolvers = {
 
 		try {
 			const result = await blog.save();
-			createdBlog = transformBlog(result);
+			createdBlog = await transformBlog(result);
 			const creator = await User.findById(context.userId);
 			if (!creator) {
 				throw new Error('User not found.');
@@ -26,7 +26,7 @@ const blogResolvers = {
 			creator.createdBlogs.push(blog);
 
 			await creator.save();
-
+			console.log(createdBlog);
 			return createdBlog;
 		} catch (error) {
 			console.log(error);

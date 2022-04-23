@@ -57,6 +57,14 @@ const transformBlog = (blog) => {
 	};
 };
 
+const transformUser = (user) => {
+	return {
+		...user._doc,
+		_id: user._doc._id.toString(),
+		createdBlogs: () => blogLoader.loadMany(user._doc.createdBlogs),
+	};
+};
+
 // const transformUser = (user) => {
 // 	console.log('array', user.createdBlogs);
 // 	console.log('length', user.createdBlogs.length);
@@ -80,6 +88,6 @@ const transformBlog = (blog) => {
 // };
 
 exports.transformBlog = transformBlog;
-//exports.transformUser = transformUser;
+exports.transformUser = transformUser;
 exports.user = user;
 exports.blogs = blogs;
