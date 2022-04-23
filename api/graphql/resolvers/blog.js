@@ -23,17 +23,22 @@ const blogResolvers = {
 			if (!creator) {
 				throw new Error('User not found.');
 			}
+			creator.createdBlogs.push(blog);
+
+			await creator.save();
+
+			return createdBlog;
 		} catch (error) {
 			console.log(error);
 		}
 
-		return {
-			blogId: blog.id,
-			title: blog.title,
-			content: blog.content,
-			likes: blog.likes,
-			comments: blog.comments,
-		};
+		// return {
+		// 	blogId: blog.id,
+		// 	title: blog.title,
+		// 	content: blog.content,
+		// 	likes: blog.likes,
+		// 	comments: blog.comments,
+		// };
 	},
 };
 module.exports = blogResolvers;

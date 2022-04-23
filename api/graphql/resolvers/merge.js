@@ -52,7 +52,7 @@ const user = async (userId) => {
 const transformBlog = (blog) => {
 	return {
 		...blog._doc,
-		_id: blog._doc._id.toString(),
+		blogId: blog._doc._id.toString(),
 		author: user.bind(this, blog.author),
 	};
 };
