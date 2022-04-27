@@ -40,5 +40,12 @@ const blogResolvers = {
 		// 	comments: blog.comments,
 		// };
 	},
+	blogs: async () => {
+		const blogs = await Blog.find();
+		return blogs.map((blog) => {
+			//return { ...user._doc, _id: user._doc._id.toString() };
+			return transformBlog(blog);
+		});
+	},
 };
 module.exports = blogResolvers;
