@@ -18,10 +18,10 @@ const BLOGS_QUERY = gql`
 			comments
 			createdAt
 			updatedAt
-
-			# author {
-			# 	_id
-			# }
+			author {
+				_id
+				username
+			}
 		}
 	}
 `;
