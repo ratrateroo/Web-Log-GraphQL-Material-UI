@@ -13,6 +13,9 @@ const resolvers = {
 		profileImage: (_, data) => {
 			return userResolvers.profileImage(data);
 		},
+		blogs: (_, data) => {
+			return blogResolvers.blogs(data);
+		},
 	},
 	Mutation: {
 		signUpUser: (_, data) => {
