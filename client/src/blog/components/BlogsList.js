@@ -29,6 +29,7 @@ const BLOGS_QUERY = gql`
 			author {
 				_id
 				username
+				profileimage
 			}
 		}
 	}
@@ -64,28 +65,52 @@ const BlogsList = () => {
 				<Typography variant="h5" component="h5" color="secondary">
 					Blogs List
 				</Typography>
-				<Box>
-					<Grid item xs={12} md={6}>
-						<List>
-							{loadedBlogs.map((blog) => {
-								return (
-									<ListItem
-										key={blog.blogId}
-										secondaryAction={
-											<IconButton edge="end" aria-label="delete">
-												<DeleteIcon />
-											</IconButton>
-										}>
-										<ListItemAvatar>
-											<Avatar>
-												<FolderIcon />
-											</Avatar>
-										</ListItemAvatar>
-										<ListItemText primary={blog.title} secondary={blog.author.username} />
-									</ListItem>
-								);
-							})}
-						</List>
+				<Box
+					sx={{
+						marginTop: '2rem',
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'start',
+						alignItems: 'start',
+						marginBottom: '1rem',
+						backgroundColor: 'yellowgreen',
+						padding: '1rem',
+					}}>
+					<Grid
+						container
+						sx={{
+							backgroundColor: 'green',
+						}}>
+						<Grid item>
+							<List>
+								{loadedBlogs.map((blog) => {
+									return (
+										<ListItem
+											key={blog.blogId}
+											secondaryAction={
+												<IconButton edge="end" aria-label="delete">
+													<DeleteIcon />
+												</IconButton>
+											}>
+											<ListItemAvatar>
+												<Avatar
+													alt="Profile Image"
+													src={
+														blog.author.profileimage === 'defaultimage'
+															? 'http://localhost:8000/freefiles/images/user_image.png'
+															: `http://localhost:8000/freefiles/images/${blog.author.profileimage}`
+													}
+												/>
+											</ListItemAvatar>
+											<ListItemText
+												primary={blog.title}
+												secondary={blog.author.username}
+											/>
+										</ListItem>
+									);
+								})}
+							</List>
+						</Grid>
 					</Grid>
 				</Box>
 			</Container>
