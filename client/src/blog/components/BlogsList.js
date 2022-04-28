@@ -7,6 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
@@ -105,28 +106,31 @@ const BlogsList = () => {
 								<List>
 									{loadedBlogs.map((blog) => {
 										return (
-											<ListItem
-												key={blog.blogId}
-												secondaryAction={
-													<IconButton edge="end" aria-label="delete">
-														<DeleteIcon />
-													</IconButton>
-												}>
-												<ListItemAvatar>
-													<Avatar
-														alt="Profile Image"
-														src={
-															blog.author.profileimage === 'defaultimage'
-																? 'http://localhost:8000/freefiles/images/user_image.png'
-																: `http://localhost:8000/freefiles/images/${blog.author.profileimage}`
-														}
+											<>
+												<ListItem
+													key={blog.blogId}
+													secondaryAction={
+														<IconButton edge="end" aria-label="delete">
+															<DeleteIcon />
+														</IconButton>
+													}>
+													<ListItemAvatar>
+														<Avatar
+															alt="Profile Image"
+															src={
+																blog.author.profileimage === 'defaultimage'
+																	? 'http://localhost:8000/freefiles/images/user_image.png'
+																	: `http://localhost:8000/freefiles/images/${blog.author.profileimage}`
+															}
+														/>
+													</ListItemAvatar>
+													<ListItemText
+														primary={blog.title}
+														secondary={blog.author.username}
 													/>
-												</ListItemAvatar>
-												<ListItemText
-													primary={blog.title}
-													secondary={blog.author.username}
-												/>
-											</ListItem>
+												</ListItem>
+												<Divider />
+											</>
 										);
 									})}
 								</List>
