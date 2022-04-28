@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 import { gql, useLazyQuery } from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FolderIcon from '@mui/icons-material/Folder';
 import { useTheme } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -75,40 +74,64 @@ const BlogsList = () => {
 						marginBottom: '1rem',
 					}}>
 					<Grid container>
-						<Grid
-							item
-							sx={{
-								width: '100%',
-							}}>
-							<List>
-								{loadedBlogs.map((blog) => {
-									return (
-										<ListItem
-											key={blog.blogId}
-											secondaryAction={
-												<IconButton edge="end" aria-label="delete">
-													<DeleteIcon />
-												</IconButton>
-											}>
-											<ListItemAvatar>
-												<Avatar
-													alt="Profile Image"
-													src={
-														blog.author.profileimage === 'defaultimage'
-															? 'http://localhost:8000/freefiles/images/user_image.png'
-															: `http://localhost:8000/freefiles/images/${blog.author.profileimage}`
-													}
+						{error && (
+							<Grid>
+								<Typography
+									gutterBottom
+									variant="h6"
+									component="h6"
+									color={theme.palette.error.main}>
+									{/* Some error occured...  */}
+									{error.message}
+								</Typography>
+							</Grid>
+						)}
+						{loading ? (
+							<Grid>
+								<Typography
+									gutterBottom
+									variant="h6"
+									component="h6"
+									color={theme.palette.info.main}>
+									Loading users...
+								</Typography>
+							</Grid>
+						) : (
+							<Grid
+								item
+								sx={{
+									width: '100%',
+								}}>
+								<List>
+									{loadedBlogs.map((blog) => {
+										return (
+											<ListItem
+												key={blog.blogId}
+												secondaryAction={
+													<IconButton edge="end" aria-label="delete">
+														<DeleteIcon />
+													</IconButton>
+												}>
+												<ListItemAvatar>
+													<Avatar
+														alt="Profile Image"
+														src={
+															blog.author.profileimage === 'defaultimage'
+																? 'http://localhost:8000/freefiles/images/user_image.png'
+																: `http://localhost:8000/freefiles/images/${blog.author.profileimage}`
+														}
+													/>
+												</ListItemAvatar>
+												<ListItemText
+													primary={blog.title}
+													secondary={blog.author.username}
 												/>
-											</ListItemAvatar>
-											<ListItemText
-												primary={blog.title}
-												secondary={blog.author.username}
-											/>
-										</ListItem>
-									);
-								})}
-							</List>
-						</Grid>
+											</ListItem>
+										);
+									})}
+								</List>
+							</Grid>
+						)}
 					</Grid>
 				</Box>
 			</Container>
