@@ -73,15 +73,13 @@ const BlogsList = () => {
 						justifyContent: 'start',
 						alignItems: 'start',
 						marginBottom: '1rem',
-						backgroundColor: 'yellowgreen',
-						padding: '1rem',
 					}}>
-					<Grid
-						container
-						sx={{
-							backgroundColor: 'green',
-						}}>
-						<Grid item>
+					<Grid container>
+						<Grid
+							item
+							sx={{
+								width: '100%',
+							}}>
 							<List>
 								{loadedBlogs.map((blog) => {
 									return (
