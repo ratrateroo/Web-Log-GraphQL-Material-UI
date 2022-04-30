@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 import { gql, useLazyQuery } from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { useTheme } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -13,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 
@@ -107,13 +109,7 @@ const BlogsList = () => {
 									{loadedBlogs.map((blog) => {
 										return (
 											<>
-												<ListItem
-													key={blog.blogId}
-													secondaryAction={
-														<IconButton edge="end" aria-label="delete">
-															<DeleteIcon />
-														</IconButton>
-													}>
+												<ListItem key={blog.blogId}>
 													<ListItemAvatar>
 														<Avatar
 															alt="Profile Image"
@@ -128,6 +124,16 @@ const BlogsList = () => {
 														primary={blog.title}
 														secondary={blog.author.username}
 													/>
+													<ListItemIcon>
+														<IconButton edge="end" aria-label="delete">
+															<EditIcon />
+														</IconButton>
+													</ListItemIcon>
+													<ListItemIcon>
+														<IconButton edge="end" aria-label="delete">
+															<DeleteIcon />
+														</IconButton>
+													</ListItemIcon>
 												</ListItem>
 												<Divider />
 											</>
