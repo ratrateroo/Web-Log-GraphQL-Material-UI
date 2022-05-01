@@ -106,10 +106,10 @@ const BlogsList = () => {
 									width: '100%',
 								}}>
 								<List>
-									{loadedBlogs.map((blog) => {
+									{loadedBlogs.map((blog, i) => {
 										return (
 											<>
-												<ListItem key={blog.blogId}>
+												<ListItem key={blog.blogId + i}>
 													<ListItemAvatar>
 														<Avatar
 															alt="Profile Image"
