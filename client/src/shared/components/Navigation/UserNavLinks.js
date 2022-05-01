@@ -32,7 +32,7 @@ const UserNavLinks = () => {
 				<Button
 					onClick={logOutHandler}
 					sx={{
-						backgroundColor: match ? theme.palette.secondary.main : 'none',
+						backgroundColor: match ? 'none' : theme.palette.secondary.main,
 						color: 'inherit',
 					}}>
 					Logout
