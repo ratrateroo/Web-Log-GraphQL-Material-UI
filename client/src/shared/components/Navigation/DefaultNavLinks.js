@@ -1,27 +1,14 @@
 import React, { Fragment } from 'react';
 
-import Button from '@mui/material/Button';
-import { Link as RouterLink } from 'react-router-dom';
+import CustomLink from '../../../components/FormElements/CustomLink/CustomLink';
 
 const DefaultNavLinks = () => {
-	// const auth = useContext(AuthContext);
-
 	return (
 		<Fragment>
-			<Button color="inherit" to="/" component={RouterLink}>
-				Home
-			</Button>
-			<Button color="inherit" to="/blogs" component={RouterLink}>
-				Blogs
-			</Button>
-
-			<Button color="inherit" to="/users" component={RouterLink}>
-				Users
-			</Button>
-
-			<Button color="inherit" to="/createblog" component={RouterLink}>
-				Create Blog
-			</Button>
+			<CustomLink to="/">Home</CustomLink>
+			<CustomLink to="/blogs">Blogs</CustomLink>
+			<CustomLink to="/users">Users</CustomLink>
+			<CustomLink to="/createblog">Create Blog</CustomLink>
 		</Fragment>
 	);
 };
