@@ -1,8 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
 import { gql, useLazyQuery } from '@apollo/client';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import MenuBookSharpIcon from '@mui/icons-material/MenuBookSharp';
 import { useTheme } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -126,12 +125,7 @@ const BlogsList = () => {
 													/>
 													<ListItemIcon>
 														<IconButton edge="end" aria-label="delete">
-															<EditIcon />
-														</IconButton>
-													</ListItemIcon>
-													<ListItemIcon>
-														<IconButton edge="end" aria-label="delete">
-															<DeleteIcon />
+															<MenuBookSharpIcon />
 														</IconButton>
 													</ListItemIcon>
 												</ListItem>
