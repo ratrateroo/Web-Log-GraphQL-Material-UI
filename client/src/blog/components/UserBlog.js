@@ -14,7 +14,36 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 const UserBlog = () => {
-	return <h1>User Blog</h1>;
+	return (
+		<Fragment>
+			<Container
+				component="main"
+				sx={{
+					mt: '1rem',
+					mb: '2rem',
+					maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' },
+				}}>
+				<CssBaseline />
+
+				<Typography variant="h5" component="h5" color="secondary">
+					Title
+				</Typography>
+				<Box
+					sx={{
+						marginTop: '2rem',
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'start',
+						alignItems: 'start',
+						marginBottom: '1rem',
+					}}>
+					<Typography variant="h5" component="h5" color="secondary">
+						Content
+					</Typography>
+				</Box>
+			</Container>
+		</Fragment>
+	);
 };
 
 export default UserBlog;
