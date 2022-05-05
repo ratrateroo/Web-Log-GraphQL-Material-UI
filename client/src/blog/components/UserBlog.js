@@ -40,6 +40,12 @@ const UserBlog = () => {
 					<Typography variant="h5" component="h5" color="secondary">
 						Content
 					</Typography>
+					<Typography variant="h5" component="h5" color="secondary">
+						Likes
+					</Typography>
+					<Typography variant="h5" component="h5" color="secondary">
+						Comments
+					</Typography>
 				</Box>
 			</Container>
 		</Fragment>
