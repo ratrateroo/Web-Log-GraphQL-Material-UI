@@ -125,15 +125,16 @@ const BlogsList = () => {
 														primary={blog.title}
 														secondary={blog.author.username}
 													/>
-													<ListItemButton
-														to={`/blog/${blog.blogId}`}
-														component={RouterLink}>
-														<ListItemIcon>
-															<IconButton edge="end" aria-label="delete">
-																<MenuBookSharpIcon />
-															</IconButton>
-														</ListItemIcon>
-													</ListItemButton>
+
+													<ListItemIcon>
+														<IconButton
+															to={`/blog/${blog.blogId}`}
+															component={RouterLink}
+															edge="end"
+															aria-label="delete">
+															<MenuBookSharpIcon />
+														</IconButton>
+													</ListItemIcon>
 												</ListItem>
 												<Divider />
 											</>
