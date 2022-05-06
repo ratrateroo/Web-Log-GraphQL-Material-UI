@@ -125,7 +125,9 @@ const BlogsList = () => {
 														primary={blog.title}
 														secondary={blog.author.username}
 													/>
-													<ListItemButton>
+													<ListItemButton
+														to={`/blog/${blog.blogId}`}
+														component={RouterLink}>
 														<ListItemIcon>
 															<IconButton edge="end" aria-label="delete">
 																<MenuBookSharpIcon />
