@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { Link as RouterLink, useMatch, useResolvedPath } from 'react-router-dom';
 
 import { gql, useLazyQuery } from '@apollo/client';
 import MenuBookSharpIcon from '@mui/icons-material/MenuBookSharp';
@@ -13,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
@@ -123,11 +125,13 @@ const BlogsList = () => {
 														primary={blog.title}
 														secondary={blog.author.username}
 													/>
-													<ListItemIcon>
-														<IconButton edge="end" aria-label="delete">
-															<MenuBookSharpIcon />
-														</IconButton>
-													</ListItemIcon>
+													<ListItemButton>
+														<ListItemIcon>
+															<IconButton edge="end" aria-label="delete">
+																<MenuBookSharpIcon />
+															</IconButton>
+														</ListItemIcon>
+													</ListItemButton>
 												</ListItem>
 												<Divider />
 											</>
