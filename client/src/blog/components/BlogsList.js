@@ -47,8 +47,10 @@ const BlogsList = () => {
 	useEffect(async () => {
 		try {
 			await getBlogs();
-			setLoadedBlogs(data.blogs);
-			console.log(data);
+			if (data) {
+				setLoadedBlogs(data.blogs);
+				console.log(data);
+			}
 		} catch (err) {
 			console.log(err);
 		}
@@ -109,7 +111,7 @@ const BlogsList = () => {
 								<List>
 									{loadedBlogs.map((blog, i) => {
 										return (
-											<>
+											<Fragment key={blog.blogId}>
 												<ListItem key={blog.blogId + i}>
 													<ListItemAvatar>
 														<Avatar
@@ -137,7 +139,7 @@ const BlogsList = () => {
 													</ListItemIcon>
 												</ListItem>
 												<Divider />
-											</>
+											</Fragment>
 										);
 									})}
 								</List>
