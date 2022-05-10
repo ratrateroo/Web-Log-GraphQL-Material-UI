@@ -17,6 +17,8 @@ import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 
 const UserBlog = () => {
+	const params = useParams();
+	const { bid } = params;
 	return (
 		<Fragment>
 			<Container
