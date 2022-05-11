@@ -16,6 +16,22 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 
+const BLOG_QUERY = gql`
+	query BlogQuery($id: ID!) {
+		blog(id: $id) {
+			blogId
+			title
+			content
+			likes
+			comments
+			createdAt
+			updatedAt
+
+			author
+		}
+	}
+`;
+
 const UserBlog = () => {
 	const params = useParams();
 	const { bid } = params;
