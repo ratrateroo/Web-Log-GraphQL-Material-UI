@@ -26,7 +26,6 @@ const BLOG_QUERY = gql`
 			comments
 			createdAt
 			updatedAt
-
 			author
 		}
 	}
