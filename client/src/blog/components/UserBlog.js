@@ -34,6 +34,9 @@ const BLOG_QUERY = gql`
 const UserBlog = () => {
 	const params = useParams();
 	const { bid } = params;
+	const { data, loading, error } = useQuery(BLOG_QUERY, {
+		variables: { id: bid },
+	});
 	return (
 		<Fragment>
 			<Container
