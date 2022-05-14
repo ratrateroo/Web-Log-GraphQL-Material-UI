@@ -1,18 +1,11 @@
 import React, { Fragment } from 'react';
 
-import { gql, useQuery, useMutation, useApolloClient } from '@apollo/client';
-import Avatar from '@mui/material/Avatar';
+import { gql, useQuery } from '@apollo/client';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 
