@@ -30,6 +30,7 @@ const UserBlog = () => {
 	const { data, loading, error } = useQuery(BLOG_QUERY, {
 		variables: { id: bid },
 	});
+	console.log(data);
 	return (
 		<Fragment>
 			<Container
