@@ -33,38 +33,46 @@ const UserBlog = () => {
 	console.log(data);
 	return (
 		<Fragment>
-			<Container
-				component="main"
-				sx={{
-					mt: '1rem',
-					mb: '2rem',
-					maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' },
-				}}>
-				<CssBaseline />
-
-				<Typography variant="h5" component="h5" color="secondary">
-					Title
-				</Typography>
-				<Box
+			{loading ? (
+				<Container>
+					<Typography variant="h5" component="h5" color="secondary">
+						Loading
+					</Typography>
+				</Container>
+			) : (
+				<Container
+					component="main"
 					sx={{
-						marginTop: '2rem',
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'start',
-						alignItems: 'start',
-						marginBottom: '1rem',
+						mt: '1rem',
+						mb: '2rem',
+						maxWidth: { xs: 'xs', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' },
 					}}>
+					<CssBaseline />
+
 					<Typography variant="h5" component="h5" color="secondary">
-						Content
+						Title
 					</Typography>
-					<Typography variant="h5" component="h5" color="secondary">
-						Likes
-					</Typography>
-					<Typography variant="h5" component="h5" color="secondary">
-						Comments
-					</Typography>
-				</Box>
-			</Container>
+					<Box
+						sx={{
+							marginTop: '2rem',
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'start',
+							alignItems: 'start',
+							marginBottom: '1rem',
+						}}>
+						<Typography variant="h5" component="h5" color="secondary">
+							Content
+						</Typography>
+						<Typography variant="h5" component="h5" color="secondary">
+							Likes
+						</Typography>
+						<Typography variant="h5" component="h5" color="secondary">
+							Comments
+						</Typography>
+					</Box>
+				</Container>
+			)}
 		</Fragment>
 	);
 };
