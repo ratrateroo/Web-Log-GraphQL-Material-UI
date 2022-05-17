@@ -33,6 +33,13 @@ const UserBlog = () => {
 	console.log(data);
 	return (
 		<Fragment>
+			{error && (
+				<Container>
+					<Typography variant="h5" component="h5" color="secondary">
+						Error
+					</Typography>
+				</Container>
+			)}
 			{loading ? (
 				<Container>
 					<Typography variant="h5" component="h5" color="secondary">
