@@ -57,7 +57,7 @@ const UserBlog = () => {
 					<CssBaseline />
 
 					<Typography variant="h5" component="h5" color="secondary">
-						Title
+						{data ? data.blog.title : 'Title'}
 					</Typography>
 					<Box
 						sx={{
