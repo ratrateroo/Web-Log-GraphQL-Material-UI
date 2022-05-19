@@ -69,7 +69,7 @@ const UserBlog = () => {
 							marginBottom: '1rem',
 						}}>
 						<Typography variant="h5" component="h5" color="secondary">
-							Content
+							{data ? data.blog.content : 'Content'}
 						</Typography>
 						<Typography variant="h5" component="h5" color="secondary">
 							Likes
