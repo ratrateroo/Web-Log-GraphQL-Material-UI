@@ -74,9 +74,16 @@ const UserBlog = () => {
 						<Typography variant="h5" component="h5" color="secondary">
 							Likes
 						</Typography>
-						<Typography variant="h5" component="h5" color="secondary">
-							Comments
-						</Typography>
+
+						{data
+							? data.blog.comments.map((comment) => {
+									return (
+										<Typography variant="h5" component="h5" color="secondary">
+											{comment}
+										</Typography>
+									);
+							  })
+							: 'Comments'}
 					</Box>
 				</Container>
 			)}
