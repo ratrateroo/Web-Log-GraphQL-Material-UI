@@ -72,7 +72,7 @@ const UserBlog = () => {
 							{data ? data.blog.content : 'Content'}
 						</Typography>
 						<Typography variant="h5" component="h5" color="secondary">
-							Likes
+							Likes: {data ? data.blog.likes.length() : '0'}
 						</Typography>
 
 						{data
