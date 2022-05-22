@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react';
 
 import { gql, useQuery } from '@apollo/client';
-
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-
 import Typography from '@mui/material/Typography';
 import { useParams } from 'react-router-dom';
 
