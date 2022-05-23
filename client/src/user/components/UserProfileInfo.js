@@ -91,6 +91,10 @@ const UserProfileInfo = () => {
 				.catch((error) => console.log(error));
 	};
 
+	const openUserBlogsListHandler = () => {
+		console.log('Open User Blog List Page');
+	};
+
 	return (
 		<Fragment>
 			<Container
@@ -353,7 +357,7 @@ const UserProfileInfo = () => {
 																backgroundColor: theme.palette.secondary.main,
 															}}
 															size="small"
-															onClick={openModalHandler}>
+															onClick={openUserBlogsListHandler}>
 															Read Blogs
 														</Button>
 														<Button
