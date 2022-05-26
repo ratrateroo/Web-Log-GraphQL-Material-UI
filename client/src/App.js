@@ -3,6 +3,7 @@ import React, { Fragment, useContext, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import RequireAuth from './auth/RequireAuth';
+import UserBlogsList from './blog/components/UserBlogsList';
 import Blog from './blog/pages/Blog';
 import Blogs from './blog/pages/Blogs';
 import CreateBlog from './blog/pages/CreateBlog';
@@ -37,6 +38,7 @@ const App = () => {
 					<Route path="/signup" element={<UserSignUp />} />
 					<Route path="/login" element={<UserLogIn />} />
 					<Route path="/blog/:bid" element={<Blog />} />
+					<Route path="/blogs/:uid" element={<UserBlogsList />} />
 					<Route path="/blogs" element={<Blogs />} />
 					<Route
 						path="/users"
