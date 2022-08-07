@@ -10,9 +10,6 @@ const { getUserId } = require("../util/getUserId");
 console.log("Apollo Server Created.");
 
 const apolloserver = new ApolloServer({
-  cors: {
-    origin: ["http://localhost:3000"],
-  },
   typeDefs,
   resolvers,
   context: ({ req }) => {
