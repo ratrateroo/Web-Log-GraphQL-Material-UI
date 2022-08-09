@@ -94,10 +94,10 @@ const authLink = setContext(async (_, { headers }) => {
 
 //=========================UPLOAD LINK===========================
 const uploadLink = createUploadLink({
-  uri: `http://localhost:8000/graphql`,
-  fetchOptions: {
-    mode: "no-cors",
-  },
+  uri: `http://localhost:3001/graphql`,
+  // fetchOptions: {
+  //   mode: "no-cors",
+  // },
   // credentials: 'include',
 });
 //=========================UPLOAD LINK===========================

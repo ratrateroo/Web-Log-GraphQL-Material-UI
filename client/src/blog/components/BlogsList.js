@@ -127,8 +127,8 @@ const BlogsList = () => {
                               alt="Profile Image"
                               src={
                                 blog.author.profileimage === "defaultimage"
-                                  ? "http://localhost:8000/freefiles/images/user_image.png"
-                                  : `http://localhost:8000/freefiles/images/${blog.author.profileimage}`
+                                  ? "http://localhost:3001/freefiles/images/user_image.png"
+                                  : `http://localhost:3001/freefiles/images/${blog.author.profileimage}`
                               }
                             />
                           </ListItemAvatar>
