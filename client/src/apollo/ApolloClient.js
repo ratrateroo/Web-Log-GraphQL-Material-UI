@@ -94,7 +94,7 @@ const authLink = setContext(async (_, { headers }) => {
 
 //=========================UPLOAD LINK===========================
 const uploadLink = createUploadLink({
-  uri: `http://localhost:3001/graphql`,
+  uri: `http://localhost:${process.env.SERVER_PORT}/graphql`,
   // fetchOptions: {
   //   mode: "no-cors",
   // },

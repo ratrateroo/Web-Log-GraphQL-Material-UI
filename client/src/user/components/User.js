@@ -16,8 +16,8 @@ const User = (props) => {
           height="150"
           image={
             props.profileimage === "defaultimage"
-              ? "http://localhost:3001/freefiles/images/user_image.png"
-              : `http://localhost:3001/freefiles/images/${props.profileimage}`
+              ? `http://localhost:${process.env.SERVER_PORT}/freefiles/images/user_image.png`
+              : `http://localhost:${process.env.SERVER_PORT}/freefiles/images/${props.profileimage}`
           }
           alt={(props.username + " profile image").toString()}
         />

@@ -222,8 +222,8 @@ const UserProfileInfo = () => {
                         alt="Profile Image"
                         src={
                           data.user.profileimage === "defaultimage"
-                            ? "http://localhost:3001/freefiles/images/user_image.png"
-                            : `http://localhost:3001/freefiles/images/${data.user.profileimage}`
+                            ? `http://localhost:${process.env.SERVER_PORT}/freefiles/images/user_image.png`
+                            : `http://localhost:${process.env.SERVER_PORT}/freefiles/images/${data.user.profileimage}`
                         }
                         sx={{
                           width: "10rem",
@@ -508,8 +508,8 @@ const UserProfileInfo = () => {
                         alt="Profile Image"
                         src={
                           data.user.profileimage === "defaultimage"
-                            ? "http://localhost:3001/freefiles/images/user_image.png"
-                            : `http://localhost:3001/freefiles/images/${data.user.profileimage}`
+                            ? `http://localhost:${process.env.SERVER_PORT}/freefiles/images/user_image.png`
+                            : `http://localhost:${process.env.SERVER_PORT}/freefiles/images/${data.user.profileimage}`
                         }
                         sx={{
                           width: "10rem",
